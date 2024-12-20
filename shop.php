@@ -178,7 +178,7 @@
                 </ul>
               </div>
               <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
+                <a class="cart-icon" href="shop-cart.php">
                   <span class="cart-count">2</span>
                   <i class="ti-shopping-cart"></i>
                 </a>
@@ -209,7 +209,7 @@
                     <h4>Total <span>$119.00</span></h4>
                   </div>
                   <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
+                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
                     <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
                   </div>
                 </div>

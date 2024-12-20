@@ -12,7 +12,7 @@ include('Components/header.php');
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <!-- Start Slide Item -->
-              <div class="home-slider-item bg-img-cover" data-bg-img="assets/img/slider/1.png">
+              <div class="home-slider-item bg-img-cover" data-bg-img="assets/img/slider/b.jpg">
                 <div class="slider-content-area">
                   <div class="container">
                     <div class="row">
@@ -36,7 +36,7 @@ include('Components/header.php');
             </div>
             <div class="swiper-slide">
               <!-- Start Slide Item -->
-              <div class="home-slider-item bg-img-cover" data-bg-img="assets/img/slider/2.png">
+              <div class="home-slider-item bg-img-cover" data-bg-img="assets/img/slider/b2.avif">
                 <div class="slider-content-area">
                   <div class="container">
                     <div class="row">
@@ -65,12 +65,12 @@ include('Components/header.php');
     <!--== End Hero Area Wrapper ==-->
 <?php
     // Fetch products from the database
-$query = "SELECT * FROM products";
+$query = "SELECT * FROM category";
 $stmt = $pdo->query($query);
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$category = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Check if there are any products
-if (count($products) > 0):
+if (count($category) > 0):
 ?>
 <!--== Start Product Area Wrapper ==-->
 <section class="product-area latest-product-area" data-aos="fade-up" data-aos-duration="1000">
@@ -87,41 +87,41 @@ if (count($products) > 0):
       <div class="col-12">
         <div class="swiper-container product4-slider-container">
           <div class="swiper-wrapper">
-            <?php foreach ($products as $product): ?>
+            <?php foreach ($category as $cat): ?>
               <div class="swiper-slide">
                 <!-- Start Product Item -->
                 <div class="product-item">
                   <div class="product-thumb">
-                    <a href="shop-single-product.php?product_id=<?php echo $product['id']; ?>">
-                      <img src="adminpanel/img/<?php echo $product['image']; ?>" >
-                      <?php if ($product['sale_percentage']): ?>
+                    <a href="shop-single-product.php?product_id=<?php echo $cat['id']; ?>">
+                      <img src="adminpanel/img/<?php echo $cat['image']; ?>" >
+                      <?php if ($cat['sale']): ?>
                         <div class="ribbons">
                           <span class="ribbon ribbon-hot">Sale</span>
-                          <span class="ribbon ribbon-onsale align-right">-<?php echo $product['sale_percentage']; ?>%</span>
+                          <span class="ribbon ribbon-onsale align-right"><?php echo $cat['sale']; ?>%</span>
                         </div>
                       <?php endif; ?>
                     </a>
                     <div class="product-action">
-                      <a class="action-wishlist" href="javascript:void(0);" onclick="addToWishlist(<?php echo $product['product_id']; ?>);" title="Wishlist">
+                      <!-- <a class="action-wishlist" href="javascript:void(0);" onclick="addToWishlist(<?php// echo $cat['product_id']; ?>);" title="Wishlist">
                         <i class="ion-android-favorite-outline"></i>
-                      </a> 
-                      <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
+                      </a>  -->
+                      <!-- <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
                         <i class="ion-ios-search-strong"></i>
-                      </a>
-                      <a class="action-cart" href="#/">
+                      </a> -->
+                      <a class="action-cart" href="">
                         <i class="fa fa-opencart"></i>
                       </a>
                     </div>
                   </div>
-                  <!-- <div class="product-info">
-                    <h4 class="title"><a href="shop-single-product.php?product_id=<?php //echo $product['product_id']; ?>"><?php echo $product['product_name']; ?></a></h4>
-                    <div class="prices">
+                  <div class="product-info">
+                    <h4 class="title"><a href="shop-single-product.php?product_id=<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></a></h4>
+                    <!-- <div class="prices">
                       <span class="price">$<?php //echo number_format($product['prize'], 2); ?></span>
                       <?php //if ($product['old_price']): ?>
                         <del class="price-old">$<?php //echo number_format($product['old_price'], 2); ?></del>
                       <?php //endif; ?>
-                    </div>
-                  </div> -->
+                    </div> -->
+                  </div> 
                 </div>
                 <!-- End Product Item -->
               </div>
@@ -147,7 +147,7 @@ endif;
             <div class="single-offer">
               <div class="thumb">
                 <a href="shop-single-product.html">
-                  <img src="assets/img/shop/offer-1.webp" alt="Alan-Shop">
+                  <img src="assets/img/offer-1.webp" alt="Alan-Shop">
                 </a>
               </div>
             </div>
@@ -156,7 +156,7 @@ endif;
             <div class="single-offer">
               <div class="thumb">
                 <a href="shop-single-product.html">
-                  <img src="assets/img/shop/offer-2.webp" alt="Alan-Shop">
+                  <img src="assets/img/offer-2.webp" alt="Alan-Shop">
                 </a>
               </div>
             </div>
@@ -178,260 +178,57 @@ endif;
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/1.png" alt="Alan-Shop">
-                  <div class="ribbons">
-                    <span class="ribbon ribbon-hot">Sale</span>
-                    <span class="ribbon ribbon-onsale align-right">-15%</span>
-                  </div>
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="#/" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">1. New and sale badge pro...</a></h4>
-                <div class="prices">
-                  <span class="price">$110.00</span>
-                  <del class="price-old">$130.00</del>
-                </div>
-              </div>
+          <?php
+        // Fetch products from the database
+$stmt = $pdo->query("SELECT * FROM products");
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<div class="row">
+  <?php foreach ($products as $product): ?>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <!-- Start Product Item -->
+      <div class="product-item">
+        <div class="product-thumb">
+          <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+            <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
+            <div class="ribbons">
+              <?php if ($product['sale_percentage']): ?>
+                <span class="ribbon ribbon-hot">Sale</span>
+              <?php endif; ?>
+              <?php if (!empty($product['sale_percentage'])): ?>
+                <span class="ribbon ribbon-onsale align-right"><?= $product['sale_percentage']; ?>%</span>
+              <?php endif; ?>
             </div>
-            <!-- End Product Item -->
+          </a>
+          <div class="product-action">
+            <!-- <a class="action-wishlist" href="#/" title="Wishlist">
+              <i class="ion-android-favorite-outline"></i>
+            </a> -->
+            <!-- <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
+              <i class="ion-ios-search-strong"></i>
+            </a> -->
+            <a class="action-cart" href="productDetail.php?id=<?= $product['id']; ?>">
+              <i class="fa fa-opencart"></i>
+            </a>
           </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/2.webp" alt="Alan-Shop">
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">2. New badge product</a></h4>
-                <div class="prices">
-                  <span class="price">$80.00</span>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
+        </div>
+        <div class="product-info">
+          <h4 class="title">
+            <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+              <?= htmlspecialchars($product['name']); ?>
+            </a>
+          </h4>
+          <div class="prices">
+            <span class="price">$<?= number_format($product['prize'], 2); ?></span>
           </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/3.png" alt="Alan-Shop">
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">11. Product with video</a></h4>
-                <div class="prices">
-                  <span class="price">$39.00</span>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/4.webp" alt="Alan-Shop">
-                  <div class="ribbons">
-                    <span class="ribbon ribbon-hot">Sale</span>
-                    <span class="ribbon ribbon-onsale align-right">-18%</span>
-                  </div>
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">3. Variable product</a></h4>
-                <div class="prices">
-                  <span class="price">$70.00</span>
-                  <del class="price-old">$85.00</del>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/5.png" alt="Alan-Shop">
-                  <div class="ribbons">
-                    <span class="ribbon-soldout">Soldout</span>
-                  </div>
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="#/" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">4. Soldout product</a></h4>
-                <div class="prices">
-                  <span class="price">$19.00</span>
-                  <del class="price-old">$29.00</del>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/6.png" alt="Alan-Shop">                  
-                  <span class="ribbon ribbon-hot">Sale</span>
-                  <span class="ribbon ribbon-onsale align-right">-35%</span>
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-                <div class="countdown-content">
-                  <ul class="countdown-timer">
-                    <li><span class="days">00</span><p class="days_text">Days</p></li>
-                    <li><span class="hours">00</span><p class="hours_text">Hour</p></li>
-                    <li><span class="minutes">00</span><p class="minutes_text">Mint</p></li>
-                    <li><span class="seconds">00</span><p class="seconds_text">Sec</p></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">8. Countdown product</a></h4>
-                <div class="prices">
-                  <span class="price">$39.00</span>
-                  <del class="price-old">$60.00</del>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/7.png" alt="Alan-Shop">
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">9. Without shortcode product</a></h4>
-                <div class="prices">
-                  <span class="price">$79.00</span>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <!-- Start Product Item -->
-            <div class="product-item">
-              <div class="product-thumb">
-                <a href="shop-single-product.html">
-                  <img src="assets/img/shop/8.png" alt="Alan-Shop">
-                  <div class="ribbons">
-                    <span class="ribbon ribbon-hot">Sale</span>
-                    <span class="ribbon ribbon-onsale align-right">-18%</span>
-                  </div>
-                </a>
-                <div class="product-action">
-                  <a class="action-wishlist" href="shop-wishlist.html" title="Wishlist">
-                    <i class="ion-android-favorite-outline"></i>
-                  </a>
-                  <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
-                    <i class="ion-ios-search-strong"></i>
-                  </a>
-                  <a class="action-cart" href="#/">
-                    <i class="fa fa-opencart"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <h4 class="title"><a href="shop-single-product.html">Product dummy title</a></h4>
-                <div class="prices">
-                  <span class="price">$110.00</span>
-                  <del class="price-old">$130.00</del>
-                </div>
-              </div>
-            </div>
-            <!-- End Product Item -->
-          </div>
+        </div>
+      </div>
+      <!-- End Product Item -->
+    </div>
+  <?php endforeach; ?>
+</div>
+      
         </div>
       </div>
     </section>
@@ -472,7 +269,7 @@ endif;
             <!--== Start Blog Post Item ==-->
             <div class="post-item mb-sm-30">
               <div class="thumb">
-                <a href="blog-details.html"><img src="assets/img/blog/1.webp" alt="Alan-Blog"></a>
+                <a href="blog-details.html"><img src="assets/img/blog/banner3.png" alt="Alan-Blog"></a>
               </div>
               <div class="content">
                 <div class="inner-content">
@@ -495,7 +292,7 @@ endif;
             <!--== Start Blog Post Item ==-->
             <div class="post-item mb-sm-30">
               <div class="thumb">
-                <a href="blog-details.html"><img src="assets/img/blog/2.webp" alt="Alan-Blog"></a>
+                <a href="blog-details.html"><img src="assets/img/blog/banner2.png" alt="Alan-Blog"></a>
               </div>
               <div class="content">
                 <div class="inner-content">

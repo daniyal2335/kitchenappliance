@@ -14,6 +14,17 @@ include('header.php');
                               <input type="text" name="cName" id="" class="form-control" placeholder="" aria-describedby="helpId">
                          
                             </div>
+                            <div class="form-group">
+                              <label for="">Sale</label>
+                              <input type="text" name="sale" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                         
+                            </div>
+                           
+                            <div class="form-group">
+                              <label for="">Price</label>
+                              <input type="text" name="pPrice" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                         
+                            </div>
                             
                             <div class="form-group">
                               <label for="">image</label>

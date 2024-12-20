@@ -4,17 +4,17 @@ include('Components/header.php');
 ?>
   <main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
-    <section class="page-title-area" data-bg-img="assets/img/photos/bg-page-title.webp">
+    <section class="page-title-area" data-bg-img="assets/img/about/ban.webp">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="page-title-content text-center">
-              <h2 class="title text-white">Account</h2>
+              <h2 class="title text-white">Login</h2>
               <div class="bread-crumbs">
                 <a href="index.html">Home
                   <span class="breadcrumb-sep">/</span>
                 </a>
-                <span class="active">Account</span>
+                <span class="active">Login</span>
               </div>
             </div>
           </div>
@@ -48,7 +48,7 @@ include('Components/header.php');
                       </div>
                       <div class="col-md-12">
                         <div class="form-group mb-0">
-                          <input name="uPassword" class="form-control" type="password" placeholder="Password">
+                          <input name="uPassword" class="form-control" type="password" placeholder="Password" required>
                         </div>
                       </div>
                       <div class="col-md-12">
@@ -59,7 +59,7 @@ include('Components/header.php');
                       </div>
                       <div class="col-md-12">
                         <div class="form-group mb-0">
-                          <a class="btn-create" href="#">Create account?</a>
+                          <a class="btn-create" href="account.php">Create account?</a>
                         </div>
                       </div>
                     </div>

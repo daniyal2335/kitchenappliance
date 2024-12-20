@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>About - Alan - Kitchen Accessories Bootstrap 5 HTML Template</title>
+    <title>Shop Cart – Alan - Kitchen Accessories Bootstrap 5 HTML Template</title>
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -42,18 +42,18 @@
 <body>
 
 <!--wrapper start-->
-<div class="wrapper home-default-wrapper">
+<div class="wrapper blog-page-wrapper">
 
   <!--== Start Preloader Content ==-->
   <div class="preloader-wrap">
-    <div class="preloader">
-      <span class="dot"></span>
-      <div class="dots">
+  	<div class="preloader">
+	    <span class="dot"></span>
+	    <div class="dots">
         <span></span>
         <span></span>
         <span></span>
-      </div>
-    </div>
+	    </div>
+  	</div>
   </div>
   <!--== End Preloader Content ==-->
 
@@ -63,7 +63,7 @@
       <div class="row align-items-center">
         <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="index.php">
               <img class="logo-main" src="assets/img/logo.png" alt="Logo" />
               <img class="logo-light" src="assets/img/logo.png" alt="Logo" />
             </a>
@@ -79,7 +79,7 @@
                     <li><a href="index-2.html">Home 2</a></li> -->
                   </ul>
                 </li>
-                <li class="has-submenu"><a href="shops.php">Shop</a>
+                <li class="has-submenu full-width"><a href="index.php">Shop</a>
                   <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
@@ -115,7 +115,7 @@
                     </li>
                   </ul> -->
                 </li>
-                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.php">Product</a>
                   <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
@@ -140,14 +140,14 @@
                   </ul>
                 </li> -->
                 <li class="has-submenu"><a href="blog.html">Blog</a>
-                  <!-- <ul class="submenu-nav">
+                  <ul class="submenu-nav">
                     <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
                     <li><a href="blog-details-right-sidebar.html">Blog Single Right Sidebar</a></li>
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
-                  </ul> -->
+                  </ul>
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -155,8 +155,8 @@
             </div>
             <div class="header-action-area">
               <div class="header-action-currency">
-                <!-- <span class="current-currency">USD</span>
-                <ul class="currency-dropdown">
+                <!-- <span class="current-currency">USD</span> -->
+                <!-- <ul class="currency-dropdown">
                   <li class="currency-item active"><a href="#/">USD - US Dollar</a></li>
                   <li class="currency-item"><a href="#/">EUR - Euro</a></li>
                   <li class="currency-item"><a href="#/">GBP - British Pound</a></li>
@@ -179,7 +179,7 @@
                 </ul>
               </div>
               <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
+                <a class="cart-icon" href="shop-cart.php">
                   <span class="cart-count">2</span>
                   <i class="ti-shopping-cart"></i>
                 </a>
@@ -210,8 +210,8 @@
                     <h4>Total <span>$119.00</span></h4>
                   </div>
                   <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
-                    <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
+                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
+                    <a class="btn-theme m-0" href="shop-checkout.php">Checkout</a>
                   </div>
                 </div>
               </div>
@@ -235,8 +235,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="page-title-content text-center">
-              <h2 class="title text-white">About</h2>
-              <div class="bread-crumbs"><a href="index.php">Home<span class="breadcrumb-sep">/</span></a><span class="active">About</span></div>
+              <h2 class="title text-white">YOUR SHOPPING CART</h2>
+              <div class="bread-crumbs"><a href="index.html">Home<span class="breadcrumb-sep">/</span></a><span class="active">Your Shopping Cart</span></div>
             </div>
           </div>
         </div>
@@ -244,69 +244,121 @@
     </section>
     <!--== End Page Title Area ==-->
 
-    <!--== Start About Area ==-->
-    <section class="about-area about-default-area">
-      <div class="container">
+    <!--== Start Cart Area Wrapper ==-->
+    <section class="cart-page-area">
+      <div class="container pt-100 pb-100">
         <div class="row">
-          <div class="col-lg-6">
-            <div class="about-content">
-              <div class="section-title">
-                <h5 class="subtitle">Welcome To</h5>
-                <h2 class="title">Our Alan Store!</h2>
-              </div>
-              <p>Phuler Shop is a premium HTML template designed and develoved from the ground up with the sole purpose of helping you create an astonishing, the beautiful and user friendly website that will boost your product’s sales.</p>
-              <p>The theme design package provides a complete Magento theme set for your online store according to your desired theme.</p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="thumb mt-md-60">
-              <img src="assets/img/about/about.png" alt="Image-Alan">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End About Area ==-->
-
-    <!--== Start Testimonial Area ==-->
-    <section class="testimonial-area testimonial-default-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7 m-auto">
-            <div class="testimonial-content">
-              <div class="swiper-container testimonial-slider-content testimonial-slider-container">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/1.webp" alt="Image-Alan">
+          <div class="col-12">
+            <div class="cart-table table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="pro-thumbnail">Image</th>
+                    <th class="pro-title">Product</th>
+                    <th class="pro-price">Price</th>
+                    <th class="pro-quantity">Quantity</th>
+                    <th class="pro-subtotal">Total</th>
+                    <th class="pro-remove">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pro-thumbnail">
+                      <a href="#"><img src="assets/img/shop/details/nav13.jpg" alt="Alan-Shop"></a>
+                    </td>
+                    <td class="pro-title">
+                      <h4><a href="#/">2. New badge product</a></h4>
+                      <span>m / gold</span>
+                    </td>
+                    <td class="pro-price"><span>$80.00</span></td>
+                    <td class="pro-quantity">
+                      <div class="quick-product-action">
+                        <div class="pro-qty">
+                          <input type="text" id="quantity" title="Quantity" value="1" />
                         </div>
                       </div>
-                      <div class="client-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore</p>
-                      </div>
-                      <div class="client-info">
-                        <h4 class="name">Khabuli Teop</h4>
-                        <h5 class="designation">Customer</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/2.webp" alt="Image-Alan">
+                    </td>
+                    <td class="pro-subtotal"><span>$80.00</span></td>
+                    <td class="pro-remove"><a href="#/">×</a></td>
+                  </tr>
+                  <tr>
+                    <td class="pro-thumbnail">
+                      <a href="#"><img src="assets/img/shop/details/nav15.jpg" alt="Alan-Shop"></a>
+                    </td>
+                    <td class="pro-title">
+                      <h4><a href="#/">11. Product with video</a></h4>
+                      <span>purple</span>
+                    </td>
+                    <td class="pro-price"><span>$39.00</span></td>
+                    <td class="pro-quantity">
+                      <div class="quick-product-action">
+                        <div class="pro-qty">
+                          <input type="text" id="quantity" title="Quantity" value="1" />
                         </div>
                       </div>
-                      <div class="client-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore</p>
+                    </td>
+                    <td class="pro-subtotal"><span>$39.00</span></td>
+                    <td class="pro-remove"><a href="#/">×</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="cart-buttons">
+              <a class="btn-shopping update-cart" href="#/">Update Cart</a>
+              <a class="btn-shopping continue-shopping" href="#/">Continue Shopping</a>
+              <a class="btn-shopping" href="#/">Clear Cart</a>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="cart-payment">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="culculate-shipping">
+                    <h3 class="title">Get shipping estimatesss</h3>
+                    <form action="#">
+                      <div class="form-group">
+                        <select class="form-control form-select" aria-label="address country">
+                          <option selected>---</option>
+                          <option value="1">Afghanistan</option>
+                          <option value="2">Åland Islands</option>
+                          <option value="3">Albania</option>
+                          <option value="4">Algeria</option>
+                          <option value="5">Andorra</option>
+                          <option value="6">Angola</option>
+                          <option value="7">Anguilla</option>
+                          <option value="8">Antigua & Barbuda</option>
+                        </select>
                       </div>
-                      <div class="client-info">
-                        <h4 class="name">Pitter davil</h4>
-                        <h5 class="designation">Customer</h5>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Zip/Postal Code">
                       </div>
-                    </div>
+                    </form>
+                    <a class="btn-theme" href="#/">Calculate shipping</a>
+                    <p class="text">Error : country is not supported; zip can't be blank.</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="cart-subtotal">
+                    <h3 class="title">Cart Totals</h3>
+                    <table>
+                      <tbody>
+                        <tr class="cart-subtotal">
+                          <th>Subtotal</th>
+                          <td>
+                            <span class="amount">$204.39</span>
+                          </td>
+                        </tr>
+                        <tr class="order-total">
+                          <th>Total</th>
+                          <td>
+                            <span class="price">$204.39</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <a class="btn-theme" href="#/">Proceed to Checkout</a>
                   </div>
                 </div>
               </div>
@@ -315,107 +367,7 @@
         </div>
       </div>
     </section>
-    <!--== End Testimonial Area ==-->
-
-    <!--== Start Team Area ==-->
-    <section class="team-area team-default-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-lg-6 m-auto">
-            <div class="section-title text-center">
-              <h2 class="title">Team Members</h2>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/1.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Mr. Nirob Khan</a></h4>
-                  <h6 class="designation">Manager</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/2.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Ms. Emma</a></h4>
-                  <h6 class="designation">Designer</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/3.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Mike Banding</a></h4>
-                  <h6 class="designation">Developer</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Team Area ==-->
-
-    <!--== Start Brand Logo Area ==-->
-    <section class="brand-logo-area brand-logo-default-area">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-12">
-            <div class="swiper-container brand-logo-slider-container">
-              <div class="swiper-wrapper brand-logo-slider">
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/1.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/2.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/3.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/4.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/5.webp" alt="Brand-Logo"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Brand Logo Area ==-->
+    <!--== End Cart Area Wrapper ==-->
   </main>
 
   <!--== Start Footer Area Wrapper ==-->
@@ -577,7 +529,7 @@
       <!-- End Off Canvas Content Wrapper -->
     </div>
   </aside>
-  <!--== End Side Menu ==-->
+  <!--== End Side Menu ==-->  
 </div>
 
 <!--=======================Javascript============================-->

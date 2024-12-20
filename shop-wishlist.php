@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Shop Wishlist – Alan - Kitchen Accessories Bootstrap 5 HTML Template</title>
+    <title>Shop Wishlist – Alan - Kitchen Accessories </title>
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -80,7 +80,7 @@
                   </ul>
                 </li>
                 <li class="has-submenu full-width"><a href="index.html">Shop</a>
-                  <ul class="submenu-nav submenu-nav-mega">
+                  <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
                         <li><a href="shop-single-product-title1.html">Fish spatula</a></li>
@@ -113,9 +113,9 @@
                         <li><a href="shop-single-product-title1.html">Mixing whisk</a></li>
                       </ul>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
-                <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
                   <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
@@ -138,16 +138,16 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="has-submenu"><a href="blog.html">Blog</a>
-                  <ul class="submenu-nav">
+                  <!-- <ul class="submenu-nav">
                     <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
                     <li><a href="blog-details-right-sidebar.html">Blog Single Right Sidebar</a></li>
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -155,7 +155,7 @@
             </div>
             <div class="header-action-area">
               <div class="header-action-currency">
-                <span class="current-currency">USD</span>
+                <!-- <span class="current-currency">USD</span>
                 <ul class="currency-dropdown">
                   <li class="currency-item active"><a href="#/">USD - US Dollar</a></li>
                   <li class="currency-item"><a href="#/">EUR - Euro</a></li>
@@ -165,21 +165,21 @@
                   <li class="currency-item"><a href="#/">JPY - Japan Yen</a></li>
                   <li class="currency-item"><a href="#/">CAD - Canada Dollar</a></li>
                   <li class="currency-item"><a href="#/">AUD - Australian Dollar</a></li>
-                </ul>
+                </ul> -->
               </div>
               <div class="header-action-usermenu">
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
                   <li><a href="account.html">My Account</a></li>
-                  <li><a href="shop-wishlist.html">Wishlist</a></li>
+                  <li><a href="shop-wishlist.php">Wishlist</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
                   <li><a href="blog.html">Blog</a></li>
-                  <li><a href="login.html">Login</a></li>
+                  <li><a href="login.php">Login</a></li>
                 </ul>
               </div>
               <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
+                <a class="cart-icon" href="shop-cart.php">
                   <span class="cart-count">2</span>
                   <i class="ti-shopping-cart"></i>
                 </a>
@@ -210,7 +210,7 @@
                     <h4>Total <span>$119.00</span></h4>
                   </div>
                   <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
+                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
                     <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
                   </div>
                 </div>
@@ -266,7 +266,7 @@
               </div>
               <div class="wishlist-info">
                 <h4 class="title"><a href="shop-single-product.html">11. Product with video</a></h4>
-                <a class="btn-wishlist" href="shop-cart.html"><i class="fa fa-plus"></i> Add to cart</a>
+                <a class="btn-wishlist" href="shop-cart.php"><i class="fa fa-plus"></i> Add to cart</a>
                 <div class="prices">
                   <span class="price">$50.09</span>
                 </div>
@@ -292,7 +292,7 @@
               </div>
               <div class="wishlist-info">
                 <h4 class="title"><a href="shop-single-product.html">2. New badge product</a></h4>
-                <a class="btn-wishlist" href="shop-cart.html"><i class="fa fa-plus"></i> Add to cart</a>
+                <a class="btn-wishlist" href="shop-cart.php"><i class="fa fa-plus"></i> Add to cart</a>
                 <div class="prices">
                   <span class="price">$102.74</span>
                 </div>
@@ -318,7 +318,7 @@
               </div>
               <div class="wishlist-info">
                 <h4 class="title"><a href="shop-single-product.html">Dummy product name</a></h4>
-                <a class="btn-wishlist" href="shop-cart.html"><i class="fa fa-plus"></i> Add to cart</a>
+                <a class="btn-wishlist" href="shop-cart.php"><i class="fa fa-plus"></i> Add to cart</a>
                 <div class="prices">
                   <span class="price">$101.46</span>
                 </div>
@@ -344,7 +344,7 @@
               </div>
               <div class="wishlist-info">
                 <h4 class="title"><a href="shop-single-product.html">Product dummy title</a></h4>
-                <a class="btn-wishlist" href="shop-cart.html"><i class="fa fa-plus"></i> Add to cart</a>
+                <a class="btn-wishlist" href="shop-cart.php"><i class="fa fa-plus"></i> Add to cart</a>
                 <div class="prices">
                   <span class="price">$101.46</span>
                 </div>

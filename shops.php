@@ -1,3 +1,6 @@
+<?php
+include('query.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Shop Cart – Alan - Kitchen Accessories Bootstrap 5 HTML Template</title>
+    <title>Kitchen Accessories </title>
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -14,7 +17,6 @@
     <!--== Google Fonts ==-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,400i,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,600,700" rel="stylesheet">
 
     <!--== Bootstrap CSS ==-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
@@ -42,19 +44,19 @@
 <body>
 
 <!--wrapper start-->
-<div class="wrapper blog-page-wrapper">
+<!-- <div class="wrapper home-default-wrapper">
 
-  <!--== Start Preloader Content ==-->
-  <div class="preloader-wrap">
-  	<div class="preloader">
-	    <span class="dot"></span>
-	    <div class="dots">
+  <!-Start Preloader Content ==-->
+  <!-- <div class="preloader-wrap">
+    <div class="preloader">
+      <span class="dot"></span>
+      <div class="dots">
         <span></span>
         <span></span>
         <span></span>
-	    </div>
-  	</div>
-  </div>
+      </div>
+    </div>
+  </div> --> 
   <!--== End Preloader Content ==-->
 
   <!--== Start Header Wrapper ==-->
@@ -63,7 +65,7 @@
       <div class="row align-items-center">
         <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="index.php">
               <img class="logo-main" src="assets/img/logo.png" alt="Logo" />
               <img class="logo-light" src="assets/img/logo.png" alt="Logo" />
             </a>
@@ -73,49 +75,49 @@
           <div class="header-align">
             <div class="header-navigation-area">
               <ul class="main-menu nav justify-content-center">
-                <li class="has-submenu active"><a href="index.html">Home</a>
-                  <ul class="submenu-nav">
-                    <li><a href="index.html">Home 1</a></li>
-                    <li><a href="index-2.html">Home 2</a></li>
-                  </ul>
+                <li class="has-submenu active"><a href="index.php">Home</a>
+                  <!-- <ul class="submenu-nav">
+                    <li><a href="index.php">Home</a></li> -->
+                    <!-- <li><a href="index-2.html">Home 2</a></li> -->
+                  <!-- </ul> -->
                 </li>
-                <li class="has-submenu full-width"><a href="index.html">Shop</a>
-                  <ul class="submenu-nav submenu-nav-mega">
-                    <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
+                <li class="has-submenu"><a href="shops.php">Shop</a>
+                  <!-- <ul class="submenu-nav submenu-nav-mega"> -->
+                    <!-- <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Fish spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Pasta fork</a></li>
-                        <li><a href="shop-single-product-title1.html">Bulb baster</a></li>
-                        <li><a href="shop-single-product-title1.html">Food mill</a></li>
+                        <li><a href="shop.php">Fish spatula</a></li>
+                        <li><a href="shop.php">Pasta fork</a></li>
+                        <li><a href="shop.php">Bulb baster</a></li>
+                        <li><a href="shop.php">Food mill</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Stainless steel</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Apple corer</a></li>
-                        <li><a href="shop-single-product-title1.html">Vegetable peeler</a></li>
-                        <li><a href="shop-single-product-title1.html">Garlic press</a></li>
-                        <li><a href="shop-single-product-title1.html">Pizza cutter</a></li>
+                        <li><a href="shop.php">Apple corer</a></li>
+                        <li><a href="shop.php">Vegetable peeler</a></li>
+                        <li><a href="shop.php">Garlic press</a></li>
+                        <li><a href="shop.php">Pizza cutter</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Marble</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Cheese slicer</a></li>
-                        <li><a href="shop-single-product-title1.html">Panini spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Melon baller</a></li>
-                        <li><a href="shop-single-product-title1.html">Nutcracker</a></li>
+                        <li><a href="shop.php">Cheese slicer</a></li>
+                        <li><a href="shop.php">Panini spatula</a></li>
+                        <li><a href="shop.php">Melon baller</a></li>
+                        <li><a href="shop.php">Nutcracker</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Granite</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Pizza peel</a></li>
-                        <li><a href="shop-single-product-title1.html">Mini whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">French whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">Mixing whisk</a></li>
+                        <li><a href="shop.php">Pizza peel</a></li>
+                        <li><a href="shop.php">Mini whisk</a></li>
+                        <li><a href="shop.php">French whisk</a></li>
+                        <li><a href="shop.php">Mixing whisk</a></li>
                       </ul>
-                    </li>
-                  </ul>
+                    </li> -->
+                  <!-- </ul> -->
                 </li>
-                <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.php">Product</a>
                   <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
@@ -138,16 +140,16 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="has-submenu"><a href="blog.html">Blog</a>
-                  <ul class="submenu-nav">
+                  <!-- <ul class="submenu-nav">
                     <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
                     <li><a href="blog-details-right-sidebar.html">Blog Single Right Sidebar</a></li>
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -155,8 +157,8 @@
             </div>
             <div class="header-action-area">
               <div class="header-action-currency">
-                <span class="current-currency">USD</span>
-                <ul class="currency-dropdown">
+                  <!-- <span class="current-currency">Dashboard</span> -->
+                <!--<ul class="currency-dropdown">
                   <li class="currency-item active"><a href="#/">USD - US Dollar</a></li>
                   <li class="currency-item"><a href="#/">EUR - Euro</a></li>
                   <li class="currency-item"><a href="#/">GBP - British Pound</a></li>
@@ -165,21 +167,21 @@
                   <li class="currency-item"><a href="#/">JPY - Japan Yen</a></li>
                   <li class="currency-item"><a href="#/">CAD - Canada Dollar</a></li>
                   <li class="currency-item"><a href="#/">AUD - Australian Dollar</a></li>
-                </ul>
+                </ul> -->
               </div>
               <div class="header-action-usermenu">
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
-                  <li><a href="account.html">My Account</a></li>
-                  <li><a href="shop-wishlist.html">Wishlist</a></li>
+                  <li><a href="account.php">My Account</a></li>
+                  <li><a href="shop-wishlist.php">Wishlist</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
                   <li><a href="blog.html">Blog</a></li>
-                  <li><a href="login.html">Login</a></li>
+                  <li><a href="login.php">Login</a></li>
                 </ul>
               </div>
               <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
+                <a class="cart-icon" href="shop-cart.php">
                   <span class="cart-count">2</span>
                   <i class="ti-shopping-cart"></i>
                 </a>
@@ -210,7 +212,7 @@
                     <h4>Total <span>$119.00</span></h4>
                   </div>
                   <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
+                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
                     <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
                   </div>
                 </div>
@@ -230,146 +232,94 @@
 
   <main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
-    <section class="page-title-area" data-bg-img="assets/img/photos/bg-page-title.webp">
+    <section class="page-title-area" data-bg-img="assets/img/about/ban.webp">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="page-title-content text-center">
-              <h2 class="title text-white">YOUR SHOPPING CART</h2>
-              <div class="bread-crumbs"><a href="index.html">Home<span class="breadcrumb-sep">/</span></a><span class="active">Your Shopping Cart</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Page Title Area ==-->
-
-    <!--== Start Cart Area Wrapper ==-->
-    <section class="cart-page-area">
-      <div class="container pt-100 pb-100">
-        <div class="row">
-          <div class="col-12">
-            <div class="cart-table table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th class="pro-thumbnail">Image</th>
-                    <th class="pro-title">Product</th>
-                    <th class="pro-price">Price</th>
-                    <th class="pro-quantity">Quantity</th>
-                    <th class="pro-subtotal">Total</th>
-                    <th class="pro-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="pro-thumbnail">
-                      <a href="#"><img src="assets/img/shop/details/nav13.jpg" alt="Alan-Shop"></a>
-                    </td>
-                    <td class="pro-title">
-                      <h4><a href="#/">2. New badge product</a></h4>
-                      <span>m / gold</span>
-                    </td>
-                    <td class="pro-price"><span>$80.00</span></td>
-                    <td class="pro-quantity">
-                      <div class="quick-product-action">
-                        <div class="pro-qty">
-                          <input type="text" id="quantity" title="Quantity" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="pro-subtotal"><span>$80.00</span></td>
-                    <td class="pro-remove"><a href="#/">×</a></td>
-                  </tr>
-                  <tr>
-                    <td class="pro-thumbnail">
-                      <a href="#"><img src="assets/img/shop/details/nav15.jpg" alt="Alan-Shop"></a>
-                    </td>
-                    <td class="pro-title">
-                      <h4><a href="#/">11. Product with video</a></h4>
-                      <span>purple</span>
-                    </td>
-                    <td class="pro-price"><span>$39.00</span></td>
-                    <td class="pro-quantity">
-                      <div class="quick-product-action">
-                        <div class="pro-qty">
-                          <input type="text" id="quantity" title="Quantity" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="pro-subtotal"><span>$39.00</span></td>
-                    <td class="pro-remove"><a href="#/">×</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="cart-buttons">
-              <a class="btn-shopping update-cart" href="#/">Update Cart</a>
-              <a class="btn-shopping continue-shopping" href="#/">Continue Shopping</a>
-              <a class="btn-shopping" href="#/">Clear Cart</a>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="cart-payment">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="culculate-shipping">
-                    <h3 class="title">Get shipping estimatesss</h3>
-                    <form action="#">
-                      <div class="form-group">
-                        <select class="form-control form-select" aria-label="address country">
-                          <option selected>---</option>
-                          <option value="1">Afghanistan</option>
-                          <option value="2">Åland Islands</option>
-                          <option value="3">Albania</option>
-                          <option value="4">Algeria</option>
-                          <option value="5">Andorra</option>
-                          <option value="6">Angola</option>
-                          <option value="7">Anguilla</option>
-                          <option value="8">Antigua & Barbuda</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Zip/Postal Code">
-                      </div>
-                    </form>
-                    <a class="btn-theme" href="#/">Calculate shipping</a>
-                    <p class="text">Error : country is not supported; zip can't be blank.</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="cart-subtotal">
-                    <h3 class="title">Cart Totals</h3>
-                    <table>
-                      <tbody>
-                        <tr class="cart-subtotal">
-                          <th>Subtotal</th>
-                          <td>
-                            <span class="amount">$204.39</span>
-                          </td>
-                        </tr>
-                        <tr class="order-total">
-                          <th>Total</th>
-                          <td>
-                            <span class="price">$204.39</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <a class="btn-theme" href="#/">Proceed to Checkout</a>
-                  </div>
-                </div>
+              <h2 class="title text-white">Shops</h2>
+              <div class="bread-crumbs">
+                <a href="index.php">Home
+                  <span class="breadcrumb-sep">/</span>
+                </a>
+                <span class="active">Shops</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--== End Cart Area Wrapper ==-->
-  </main>
+    <!--== End Page Title Area ==-->
+    <!--== Start Featured Product Area Wrapper ==-->
+    <section class="product-area featured-product-area" data-aos="fade-up" data-aos-duration="1000">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-lg-6 m-auto">
+            <div class="section-title text-center">
+              <h2 class="title">All Products</h2>
+              <!-- <p>Best selling item in our collection</p> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <?php
+        // Fetch products from the database
+$stmt = $pdo->query("SELECT * FROM products");
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
+<div class="row">
+  <?php foreach ($products as $product): ?>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <!-- Start Product Item -->
+      <div class="product-item">
+        <div class="product-thumb">
+          <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+            <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
+            <div class="ribbons">
+              <?php if ($product['sale_percentage']): ?>
+                <span class="ribbon ribbon-hot">Sale</span>
+              <?php endif; ?>
+              <?php if (!empty($product['sale_percentage'])): ?>
+                <span class="ribbon ribbon-onsale align-right"><?= $product['sale_percentage']; ?>%</span>
+              <?php endif; ?>
+            </div>
+          </a>
+          <div class="product-action">
+            <!-- <a class="action-wishlist" href="#/" title="Wishlist">
+              <i class="ion-android-favorite-outline"></i>
+            </a> -->
+            <!-- <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
+              <i class="ion-ios-search-strong"></i>
+            </a> -->
+            <a class="action-cart" href="productDetail.php?id=<?= $product['id']; ?>">
+              <i class="fa fa-opencart"></i>
+            </a>
+          </div>
+        </div>
+        <div class="product-info">
+          <h4 class="title">
+            <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+              <?= htmlspecialchars($product['name']); ?>
+            </a>
+          </h4>
+          <div class="prices">
+            <span class="price">$<?= number_format($product['prize'], 2); ?></span>
+          </div>
+        </div>
+      </div>
+      <!-- End Product Item -->
+    </div>
+  <?php endforeach; ?>
+</div>
+      
+        </div>
+      </div>
+    </section>
+              </main>
+    <!--== End Featured Product Area Wrapper ==-->
+
+    
   <!--== Start Footer Area Wrapper ==-->
   <footer class="footer-area">
     <div class="footer-main">
@@ -529,7 +479,7 @@
       <!-- End Off Canvas Content Wrapper -->
     </div>
   </aside>
-  <!--== End Side Menu ==-->  
+  <!--== End Side Menu ==-->
 </div>
 
 <!--=======================Javascript============================-->

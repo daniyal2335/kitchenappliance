@@ -62,7 +62,7 @@
       <div class="row align-items-center">
         <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="index.php">
               <img class="logo-main" src="assets/img/logo.png" alt="Logo" />
               <img class="logo-light" src="assets/img/logo.png" alt="Logo" />
             </a>
@@ -78,44 +78,44 @@
                     <!-- <li><a href="index-2.html">Home 2</a></li> -->
                   <!-- </ul> -->
                 </li>
-                <li class="has-submenu full-width"><a href="index.html">Shop</a>
-                  <ul class="submenu-nav submenu-nav-mega">
-                    <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
+                <li class="has-submenu"><a href="shops.php">Shop</a>
+                  <!-- <ul class="submenu-nav submenu-nav-mega"> -->
+                    <!-- <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Fish spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Pasta fork</a></li>
-                        <li><a href="shop-single-product-title1.html">Bulb baster</a></li>
-                        <li><a href="shop-single-product-title1.html">Food mill</a></li>
+                        <li><a href="shop.php">Fish spatula</a></li>
+                        <li><a href="shop.php">Pasta fork</a></li>
+                        <li><a href="shop.php">Bulb baster</a></li>
+                        <li><a href="shop.php">Food mill</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Stainless steel</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Apple corer</a></li>
-                        <li><a href="shop-single-product-title1.html">Vegetable peeler</a></li>
-                        <li><a href="shop-single-product-title1.html">Garlic press</a></li>
-                        <li><a href="shop-single-product-title1.html">Pizza cutter</a></li>
+                        <li><a href="shop.php">Apple corer</a></li>
+                        <li><a href="shop.php">Vegetable peeler</a></li>
+                        <li><a href="shop.php">Garlic press</a></li>
+                        <li><a href="shop.php">Pizza cutter</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Marble</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Cheese slicer</a></li>
-                        <li><a href="shop-single-product-title1.html">Panini spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Melon baller</a></li>
-                        <li><a href="shop-single-product-title1.html">Nutcracker</a></li>
+                        <li><a href="shop.php">Cheese slicer</a></li>
+                        <li><a href="shop.php">Panini spatula</a></li>
+                        <li><a href="shop.php">Melon baller</a></li>
+                        <li><a href="shop.php">Nutcracker</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Granite</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Pizza peel</a></li>
-                        <li><a href="shop-single-product-title1.html">Mini whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">French whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">Mixing whisk</a></li>
+                        <li><a href="shop.php">Pizza peel</a></li>
+                        <li><a href="shop.php">Mini whisk</a></li>
+                        <li><a href="shop.php">French whisk</a></li>
+                        <li><a href="shop.php">Mixing whisk</a></li>
                       </ul>
-                    </li>
-                  </ul>
+                    </li> -->
+                  <!-- </ul> -->
                 </li>
-                <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
-                  <ul class="submenu-nav submenu-nav-mega">
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="productDetail.php">Product</a> -->
+                  <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
                         <li><a href="shop-3-grid.html">Shop 3 Column</a></li>
@@ -136,17 +136,17 @@
                         <li><a href="shop-single-product-soldout.html">Soldout Product</a></li>
                       </ul>
                     </li>
-                  </ul>
-                </li>
+                  </ul> -->
+                <!-- </li> -->
                 <li class="has-submenu"><a href="blog.html">Blog</a>
-                  <ul class="submenu-nav">
+                  <!-- <ul class="submenu-nav">
                     <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
                     <li><a href="blog-details-right-sidebar.html">Blog Single Right Sidebar</a></li>
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -178,7 +178,7 @@
                 </ul>
               </div>
               <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
+                <a class="cart-icon" href="shop-cart.php">
                   <span class="cart-count">2</span>
                   <i class="ti-shopping-cart"></i>
                 </a>
@@ -209,7 +209,7 @@
                     <h4>Total <span>$119.00</span></h4>
                   </div>
                   <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
+                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
                     <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
                   </div>
                 </div>

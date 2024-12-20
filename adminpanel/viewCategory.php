@@ -13,6 +13,8 @@ include('header.php');
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Sale</th>
+                                    <th>Price</th>
                                     <th>Image</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -27,6 +29,8 @@ include('header.php');
                                ?>
                                 <tr>
                                     <td scope="row"><?php echo $cat['name']?></td>
+                                    <td scope="row"><?php echo $cat['sale']?></td>
+                                    <td scope="row"><?php echo $cat['price']?></td>
                                     <td><img height="50px" src="img/<?php echo $cat ['image']?>" alt=""></td>
                                     <td><a href="editCategory.php?cid=<?php echo $cat['id']?>" class="btn btn-info">Edit</a></td>
                                     <td><a href="?cdid=<?php echo $cat['id']?>" class="btn btn-danger">Delete</a></td>
