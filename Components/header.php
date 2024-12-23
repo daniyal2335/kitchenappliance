@@ -174,55 +174,78 @@
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
                   <li><a href="blog.html">Blog</a></li>
-                  <li><a href="login.php">Login</a></li>
+                  <?php
+							if(isset($_SESSION['userEmail'])){
+								?>
+								<li>
+								<a href="weblogout.php">logout</a>
+							</li>
+							<?php
+							
+							}
+							else{
+								?>
+								<li>
+								<a href="login.php">login</a>
+							</li>
+							<?php
+							}
+							?>
                 </ul>
               </div>
-              <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.php">
-                  <span class="cart-count">2</span>
-                  <i class="ti-shopping-cart"></i>
-                </a>
-                <div class="cart-dropdown-menu">
-                  <div class="minicart-action">
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">2. New badge product - m / gold</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$80.00</p>
-                      </div>
-                    </div>
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">11. Product with video - purple</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$39.00</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="shopping-cart-total">
-                    <h4>Total <span>$119.00</span></h4>
-                  </div>
-                  <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
-                    <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
-                  </div>
-                </div>
+              <?php
+
+$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$totalQty = 0;
+$totalPrice = 0;
+
+foreach ($cartItems as $item) {
+    $totalQty += $item['quantity'];
+    $totalPrice += $item['price'] * $item['quantity'];
+}
+?>
+  <div class="header-action-cart">
+    <a class="cart-icon" href="shop-cart.php">
+      <span class="cart-count"><?php echo $totalQty; ?></span>
+      <i class="ti-shopping-cart"></i>
+    </a>
+    <div class="cart-dropdown-menu">
+      <div class="minicart-action">
+        <?php if (!empty($cartItems)): ?>
+          <?php foreach ($cartItems as $item): ?>
+            <div class="minicart-item">
+              <div class="thumb">
+                <img src="adminpanel/img/<?php echo htmlspecialchars($item['image']); ?>" alt="Cart Item">
               </div>
-              <button class="btn-menu d-lg-none">
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
+              <div class="content">
+                <h4 class="title">
+                  <a href="#/"><?php echo htmlspecialchars($item['name']); ?></a>
+                </h4>
+                <h6 class="nrbQ">Qty: <?php echo $item['quantity']; ?></h6>
+                <p class="price">$<?php echo number_format($item['price'], 2); ?></p>
+              </div>
             </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="empty-cart">Your cart is empty.</p>
+        <?php endif; ?>
+      </div>
+      <div class="shopping-cart-total">
+        <h4>Total <span>$<?php echo number_format($totalPrice, 2); ?></span></h4>
+      </div>
+      <div class="shopping-cart-btn">
+        <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
+        <!-- <?php //if (!empty($cartItems)): ?>
+          <a class="btn-theme m-0" href="?checkout">Checkout</a>
+        <?php //else: ?> -->
+          <!-- <a class="btn-theme m-0" href="shop-cart.php">Add Items</a> -->
+        <?php //endif; ?>
       </div>
     </div>
-  </header>
-  <!--== End Header Wrapper ==-->
+  </div>
+  <button class="btn-menu d-lg-none">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>

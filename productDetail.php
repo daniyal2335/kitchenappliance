@@ -248,26 +248,18 @@ include('adminpanel/query.php');
     </section>
     <!--== End Page Title Area ==-->
     <?php
-    if (isset($_GET['id'])) {
+
+if (isset($_GET['id'])) {
     $productId = $_GET['id'];
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
     $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
     $stmt->execute();
 
-    // Fetch the product data
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-//     if (!$product) {
-//         echo "Product not found.";
-//         exit;
-//     }
-// } else {
-//     echo "Invalid product ID.";
-//     exit;
- }
+}
 ?>
-    <!--== Start Shop Area ==-->
-    <section class="product-area shop-single-product">
+<!--== Start Shop Area ==-->
+<section class="product-area shop-single-product">
   <div class="container">
     <div class="row">
       <!-- Product Images -->
@@ -286,16 +278,13 @@ include('adminpanel/query.php');
           <div class="prices">
             <span class="price">$<?= number_format($product['prize'], 2); ?></span>
           </div>
-          <!-- <div class="product-number">
-            SKU: <span><//?=// htmlspecialchars($product['sku']); ?></span>
-          </div> -->
           <p class="product-desc"><?= htmlspecialchars($product['des']); ?></p>
           <div class="quick-product-action mt-0">
             <div class="action-top">
               <div class="pro-qty">
-                <input type="number" id="quantity" title="Quantity" value="1" min="1" />
+                <input type="number" id="quantity" name="quantity" value="1" min="1" />
               </div>
-              <a href="shop-cart.php?id=<?= $product['id']; ?>&quantity=1" class="btn btn-black">
+              <a href="add_to_cart.php?id=<?= $product['id']; ?>&quantity=" class="btn btn-black" id="addToCartButton">
                 <i class="fa fa-opencart"></i> Add to cart
               </a>
             </div>
@@ -305,6 +294,17 @@ include('adminpanel/query.php');
     </div>
   </div>
 </section>
+
+<script>
+// Update the "Add to cart" button URL to include the quantity
+document.getElementById('addToCartButton').addEventListener('click', function (e) {
+  e.preventDefault();
+  const quantity = document.getElementById('quantity').value;
+  const url = `shop-cart.php?id=<?= $product['id']; ?>&quantity=${quantity}`;
+  window.location.href = url; // Redirect to add_to_cart.php with product ID and quantity
+});
+</script>
+
 
     <!--== End Shop Area ==-->
 

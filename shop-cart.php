@@ -1,3 +1,7 @@
+<?php
+include('adminpanel/query.php');
+include('query.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,14 +144,14 @@
                   </ul>
                 </li> -->
                 <li class="has-submenu"><a href="blog.html">Blog</a>
-                  <ul class="submenu-nav">
+                  <!-- <ul class="submenu-nav">
                     <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
                     <li><a href="blog-details-right-sidebar.html">Blog Single Right Sidebar</a></li>
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -243,78 +247,191 @@
       </div>
     </section>
     <!--== End Page Title Area ==-->
+    <?php
+if (isset($_GET['id'])) {
+    $id = (int)$_GET['id'];
+    $quantity = (int)$_GET['quantity'];
 
-    <!--== Start Cart Area Wrapper ==-->
-    <section class="cart-page-area">
-      <div class="container pt-100 pb-100">
-        <div class="row">
-          <div class="col-12">
-            <div class="cart-table table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th class="pro-thumbnail">Image</th>
-                    <th class="pro-title">Product</th>
-                    <th class="pro-price">Price</th>
-                    <th class="pro-quantity">Quantity</th>
-                    <th class="pro-subtotal">Total</th>
-                    <th class="pro-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="pro-thumbnail">
-                      <a href="#"><img src="assets/img/shop/details/nav13.jpg" alt="Alan-Shop"></a>
-                    </td>
-                    <td class="pro-title">
-                      <h4><a href="#/">2. New badge product</a></h4>
-                      <span>m / gold</span>
-                    </td>
-                    <td class="pro-price"><span>$80.00</span></td>
-                    <td class="pro-quantity">
-                      <div class="quick-product-action">
-                        <div class="pro-qty">
-                          <input type="text" id="quantity" title="Quantity" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="pro-subtotal"><span>$80.00</span></td>
-                    <td class="pro-remove"><a href="#/">×</a></td>
-                  </tr>
-                  <tr>
-                    <td class="pro-thumbnail">
-                      <a href="#"><img src="assets/img/shop/details/nav15.jpg" alt="Alan-Shop"></a>
-                    </td>
-                    <td class="pro-title">
-                      <h4><a href="#/">11. Product with video</a></h4>
-                      <span>purple</span>
-                    </td>
-                    <td class="pro-price"><span>$39.00</span></td>
-                    <td class="pro-quantity">
-                      <div class="quick-product-action">
-                        <div class="pro-qty">
-                          <input type="text" id="quantity" title="Quantity" value="1" />
-                        </div>
-                      </div>
-                    </td>
-                    <td class="pro-subtotal"><span>$39.00</span></td>
-                    <td class="pro-remove"><a href="#/">×</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="cart-buttons">
-              <a class="btn-shopping update-cart" href="#/">Update Cart</a>
-              <a class="btn-shopping continue-shopping" href="#/">Continue Shopping</a>
-              <a class="btn-shopping" href="#/">Clear Cart</a>
-            </div>
-          </div>
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
+    $stmt->execute([$id]);
+    $product = $stmt->fetch();
+
+    if (!$product) {
+        die("Product not found.");
+    }
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    if (isset($_SESSION['cart'][$id])) {
+        $_SESSION['cart'][$id]['quantity'] += $quantity;
+    } else {
+        $_SESSION['cart'][$id] = [
+            'name' => $product['name'],
+            'price' => $product['prize'],
+            'image' => $product['image'],
+            'quantity' => $quantity,
+        ];
+    }
+
+    echo "<script>alert('Product successfully added to the cart');
+    window.location.href = 'shop-cart.php';
+    </script>";
+}
+
+// Checkout logic
+if (isset($_GET['checkout'])) {
+    // User details from session
+    $uId = $_SESSION['userId'];
+    $uName = $_SESSION['userName'];
+    $uEmail = $_SESSION['userEmail'];
+
+    // Insert into orders
+    foreach ($_SESSION['cart'] as $id => $item) {
+        $pId = $id; // Product ID
+        $pName = $item['name'];
+        $pPrice = $item['price'];
+        $pQty = $item['quantity'];
+
+        $query = $pdo->prepare("INSERT INTO orders (u_id, u_name, u_email, p_id, p_name, p_price, p_qty)
+                                VALUES (:u_id, :u_name, :u_email, :p_id, :p_name, :p_price, :p_qty)");
+        $query->bindParam(':u_id', $uId);
+        $query->bindParam(':u_name', $uName);
+        $query->bindParam(':u_email', $uEmail);
+        $query->bindParam(':p_id', $pId);
+        $query->bindParam(':p_name', $pName);
+        $query->bindParam(':p_price', $pPrice);
+        $query->bindParam(':p_qty', $pQty);
+        $query->execute();
+    }
+
+    // Invoice totals
+    $totalQty = 0;
+    $totalPrice = 0;
+
+    foreach ($_SESSION['cart'] as $item) {
+        $totalQty += $item['quantity'];
+        $totalPrice += $item['price'] * $item['quantity'];
+    }
+
+    // Insert into invoice
+    $invoice_query = $pdo->prepare("INSERT INTO invoice (u_id, u_name, u_email, total_Qty, total_amount)
+                                    VALUES (:u_id, :u_name, :u_email, :total_products, :total_amount)");
+    $invoice_query->bindParam(':u_id', $uId);
+    $invoice_query->bindParam(':u_name', $uName);
+    $invoice_query->bindParam(':u_email', $uEmail);
+    $invoice_query->bindParam(':total_products', $totalQty);
+    $invoice_query->bindParam(':total_amount', $totalPrice);
+    $invoice_query->execute();
+
+    // Clear cart after successful checkout
+    unset($_SESSION['cart']);
+
+    echo "<script>alert('Order placed successfully');
+    window.location.href = 'index.php';
+    </script>";
+}
+?>
+
+
+
+?>
+
+<section class="cart-page-area">
+  <div class="container pt-100 pb-100">
+  <form method="post">
+  <div class="row">
+    <div class="col-12">
+      <div class="cart-table table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th class="pro-thumbnail">Image</th>
+              <th class="pro-title">Product</th>
+              <th class="pro-price">Price</th>
+              <th class="pro-quantity">Quantity</th>
+              <th class="pro-subtotal">Total</th>
+              <th class="pro-remove">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php 
+            $cart = $_SESSION['cart'] ?? [];
+            $total = 0;
+            foreach ($cart as $id => $item): 
+              $subtotal = $item['price'] * $item['quantity'];
+              $total += $subtotal;
+            ?>
+            <tr>
+              <td class="pro-thumbnail">
+                <img src="adminpanel/img/<?= htmlspecialchars($item['image']); ?>" alt="<?= htmlspecialchars($item['name']); ?>" class="img-fluid">
+              </td>
+              <td class="pro-title"><?= htmlspecialchars($item['name']); ?></td>
+              <td class="pro-price">$<?= number_format($item['price'], 2); ?></td>
+              <td class="pro-quantity">
+                <div class="quick-product-action">
+                  <div class="pro-qty">
+                    <!-- Quantity Input -->
+                    <input 
+                      type="number" 
+                      id="quantity-<?= $id; ?>" 
+                      name="quantities[<?= $id; ?>]" 
+                      value="<?= $item['quantity']; ?>" 
+                      class="quantity-input" 
+                      min="1"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pro-subtotal">$<?= number_format($subtotal, 2); ?></td>
+              <td class="pro-remove">
+                <a href="remove_Cart.php?id=<?= $id; ?>">×</a>
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Cart update message -->
+    <?php
+    if (isset($_SESSION['cart_message'])) {
+      echo "<script>alert('" . htmlspecialchars($_SESSION['cart_message']) . "');</script>";
+      unset($_SESSION['cart_message']);
+    }
+    ?>
+
+    <div class="col-12">
+      <div class="cart-buttons">
+        <button type="submit" class="btn-shopping update-cart" name="update_cart">Update Cart</button>
+        <a href="clear_cart.php" class="btn-shopping">Clear Cart</a>
+      </div>
+    </div>
+  </div>
+</form>
+<?php
+// Handle the cart update in PHP when the form is submitted
+if (isset($_POST['update_cart'])) {
+    $quantities = $_POST['quantities'] ?? [];
+
+    foreach ($quantities as $id => $newQuantity) {
+        if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id]['quantity'] = (int)$newQuantity;
+        }
+    }
+
+    $_SESSION['cart_message'] = "Cart updated successfully!";
+    
+}
+
+?>
+      </div>
           <div class="col-12">
             <div class="cart-payment">
               <div class="row">
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                   <div class="culculate-shipping">
                     <h3 class="title">Get shipping estimatesss</h3>
                     <form action="#">
@@ -338,8 +455,8 @@
                     <a class="btn-theme" href="#/">Calculate shipping</a>
                     <p class="text">Error : country is not supported; zip can't be blank.</p>
                   </div>
-                </div>
-                <div class="col-lg-6">
+                </div> -->
+                <div class="col-lg-7">
                   <div class="cart-subtotal">
                     <h3 class="title">Cart Totals</h3>
                     <table>
@@ -347,18 +464,36 @@
                         <tr class="cart-subtotal">
                           <th>Subtotal</th>
                           <td>
-                            <span class="amount">$204.39</span>
+                            <span class="amount">$<?= number_format($subtotal, 2); ?></span>
                           </td>
                         </tr>
                         <tr class="order-total">
                           <th>Total</th>
                           <td>
-                            <span class="price">$204.39</span>
+                            <span class="price">$<?= number_format($subtotal, 2); ?></span>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                    <a class="btn-theme" href="#/">Proceed to Checkout</a>
+                    <?php 
+						if(isset($_SESSION['userEmail'])){
+						?>
+						<a href="?checkout" class="btn-theme">
+							Proceed to Checkout
+						</a>
+						<?php 
+						}
+						else{
+
+						
+						?>
+
+						<a href="login.php" class="btn-theme">
+							Proceed to Checkout
+					</a>
+					<?php
+					}
+					?>
                   </div>
                 </div>
               </div>
@@ -388,7 +523,7 @@
               <h4 class="widget-title">Information</h4>
               <nav class="widget-menu-wrap">
                 <ul class="nav-menu nav">
-                  <li><a href="shop-account.html">My Account</a></li>
+                  <li><a href="shop-account.php">My Account</a></li>
                   <li><a href="shop-wishlist.html">Wishlist</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>

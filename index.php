@@ -92,7 +92,7 @@ if (count($category) > 0):
                 <!-- Start Product Item -->
                 <div class="product-item">
                   <div class="product-thumb">
-                    <a href="shop-single-product.php?product_id=<?php echo $cat['id']; ?>">
+                    <!-- <a href="productDetail.php?id=<?php //echo $cat['id']; ?>"> -->
                       <img src="adminpanel/img/<?php echo $cat['image']; ?>" >
                       <?php if ($cat['sale']): ?>
                         <div class="ribbons">
@@ -108,13 +108,13 @@ if (count($category) > 0):
                       <!-- <a class="action-quick-view" href="javascript:void(0);" title="Quick View">
                         <i class="ion-ios-search-strong"></i>
                       </a> -->
-                      <a class="action-cart" href="">
+                      <a class="action-cart" href="productDetail.php?id=<?= $cat['id']; ?>">
                         <i class="fa fa-opencart"></i>
                       </a>
                     </div>
                   </div>
                   <div class="product-info">
-                    <h4 class="title"><a href="shop-single-product.php?product_id=<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></a></h4>
+                 <h4 class="title">   <!-- <a href="productDetail.php?id=<?php //echo $cat['id']; ?>">--><?php echo $cat['name']; ?></a></h4> 
                     <!-- <div class="prices">
                       <span class="price">$<?php //echo number_format($product['prize'], 2); ?></span>
                       <?php //if ($product['old_price']): ?>
@@ -190,7 +190,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <!-- Start Product Item -->
       <div class="product-item">
         <div class="product-thumb">
-          <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+          <a href="productDetail.php?id=<?= $product['id']; ?>">
             <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
             <div class="ribbons">
               <?php if ($product['sale_percentage']): ?>
@@ -215,7 +215,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="product-info">
           <h4 class="title">
-            <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+            <a href="productDetail.php?id=<?= $product['id']; ?>">
               <?= htmlspecialchars($product['name']); ?>
             </a>
           </h4>

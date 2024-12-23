@@ -63,7 +63,7 @@
       <div class="row align-items-center">
         <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="index.php">
               <img class="logo-main" src="assets/img/logo.png" alt="Logo" />
               <img class="logo-light" src="assets/img/logo.png" alt="Logo" />
             </a>
@@ -73,13 +73,13 @@
           <div class="header-align">
             <div class="header-navigation-area">
               <ul class="main-menu nav justify-content-center">
-                <li class="has-submenu active"><a href="index.html">Home</a>
+                <li class="has-submenu active"><a href="index.php">Home</a>
                   <ul class="submenu-nav">
-                    <li><a href="index.html">Home 1</a></li>
+                    <li><a href="index.php">Home 1</a></li>
                     <li><a href="index-2.html">Home 2</a></li>
                   </ul>
                 </li>
-                <li class="has-submenu full-width"><a href="index.html">Shop</a>
+                <li class="has-submenu full-width"><a href="index.php">Shop</a>
                   <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
@@ -115,7 +115,7 @@
                     </li>
                   </ul> -->
                 </li>
-                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.php">Product</a>
                   <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
@@ -236,7 +236,7 @@
           <div class="col-lg-12">
             <div class="page-title-content text-center">
               <h2 class="title text-white">Wishlist</h2>
-              <div class="bread-crumbs"><a href="index.html">Home<span class="breadcrumb-sep">/</span></a><span class="active">Wishlist</span></div>
+              <div class="bread-crumbs"><a href="index.php">Home<span class="breadcrumb-sep">/</span></a><span class="active">Wishlist</span></div>
             </div>
           </div>
         </div>
@@ -497,7 +497,7 @@
         <!-- Off Canvas Header -->
         <div class="off-canvas-header">
           <div class="logo-area">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="Logo" /></a>
           </div>
           <div class="close-action">
             <button class="btn-close"><i class="fa fa-close"></i></button>
