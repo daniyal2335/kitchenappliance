@@ -68,20 +68,13 @@
                             <a href="viewCategory.php" class="dropdown-item">view Category </a>
                         </div>
                     </div>
-                    <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Brands</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Meta Tags</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="addBrand.php" class="dropdown-item">AddBrands</a>
-                            <a href="viewBrand.php" class="dropdown-item">view Brands </a>
+                            <a href="metalist.php" class="dropdown-item">view Tags </a>
                         </div>
-                    </div> -->
-                    <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Arrived Brands</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="addArrivebrand.php" class="dropdown-item">Add Arrive Brands</a>
-                            <a href="viewArriveBrand.php" class="dropdown-item">view Arrive Brands </a>
-                        </div>
-                    </div> -->
+                    </div>
+                
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Product</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -189,8 +182,7 @@
                             <span class="d-none d-lg-inline-flex">Jamal</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <!-- <a href="#" class="dropdown-item">My Profile</a> -->
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>

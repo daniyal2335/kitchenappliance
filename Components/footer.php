@@ -8,7 +8,7 @@
             <div class="widget-item">
               <h4 class="widget-title">About Information</h4>
               <div class="about-widget">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud reprhendit in voluptate velit esse exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Kitchen accessories are essential tools that enhance cooking and meal preparation. These include cookware like pots and pans, utensils such as spatulas and tongs, and storage solutions like jars and containers. Small appliances like blenders and mixers make food prep easier, while gadgets like graters, timers, and thermometers improve efficiency and precision</p>
               </div>
             </div>
           </div>
@@ -17,11 +17,11 @@
               <h4 class="widget-title">Information</h4>
               <nav class="widget-menu-wrap">
                 <ul class="nav-menu nav">
-                  <li><a href="shop-account.html">My Account</a></li>
-                  <li><a href="shop-wishlist.html">Wishlist</a></li>
+                  <li><a href="account.php">Sign up</a></li>
+                  <li><a href="shop.php">Shop</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="#blog">Blog</a></li>
                 </ul>
               </nav>
             </div>
@@ -31,10 +31,10 @@
               <h4 class="widget-title">Quick Links</h4>
               <nav class="widget-menu-wrap">
                 <ul class="nav-menu nav">
-                  <li><a href="#/">Shipping policy</a></li>
+                  <li><a href="shop-cart.php">View Cart</a></li>
                   <li><a href="#/">Size Chart</a></li>
-                  <li><a href="#/">Login</a></li>
-                  <li><a href="#/">My Account</a></li>
+                  <li><a href="login.php">Login</a></li>
+                  <li><a href="account.php">Sign up</a></li>
                   <li><a href="#/">Register</a></li>
                 </ul>
               </nav>
@@ -161,35 +161,29 @@
   <!--== End Side Menu ==-->
 </div>
 
-<!--=======================Javascript============================-->
-
-<!--=== Modernizr Min Js ===-->
-<script src="assets/js/modernizr.js"></script>
-<!--=== jQuery Min Js ===-->
+<!-- jQuery and dependencies -->
 <script src="assets/js/jquery-main.js"></script>
-<!--=== jQuery Migration Min Js ===-->
+<script src="assets/js/modernizr.js"></script>
 <script src="assets/js/jquery-migrate.js"></script>
-<!--=== Bootstrap Min Js ===-->
 <script src="assets/js/bootstrap.min.js"></script>
-<!--=== jquery Appear Js ===-->
-<script src="assets/js/jquery.appear.js"></script>
-<!--=== jquery Swiper Min Js ===-->
+
+<!-- Swiper and other libraries -->
 <script src="assets/js/swiper.min.js"></script>
-<!--=== jquery Fancybox Min Js ===-->
 <script src="assets/js/fancybox.min.js"></script>
-<!--=== jquery Aos Min Js ===-->
 <script src="assets/js/aos.min.js"></script>
-<!--=== jquery Slicknav Js ===-->
+<script src="assets/js/jquery.appear.js"></script>
 <script src="assets/js/jquery.slicknav.js"></script>
-<!--=== jquery Countdown Js ===-->
 <script src="assets/js/jquery.countdown.min.js"></script>
-<!--=== jquery Wow Min Js ===-->
 <script src="assets/js/wow.min.js"></script>
-<!--=== jQuery Zoom Min Js ===-->
 <script src="assets/js/jquery-zoom.min.js"></script>
 
-<!--=== Custom Js ===-->
+
+
+
+
+<!-- Custom JS (ensure this is last) -->
 <script src="assets/js/custom.js"></script>
+
 
 </body>
 

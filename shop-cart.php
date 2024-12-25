@@ -49,7 +49,7 @@ include('query.php');
 <div class="wrapper blog-page-wrapper">
 
   <!--== Start Preloader Content ==-->
-  <div class="preloader-wrap">
+  <!-- <div class="preloader-wrap">
   	<div class="preloader">
 	    <span class="dot"></span>
 	    <div class="dots">
@@ -58,7 +58,7 @@ include('query.php');
         <span></span>
 	    </div>
   	</div>
-  </div>
+  </div> -->
   <!--== End Preloader Content ==-->
 
   <!--== Start Header Wrapper ==-->

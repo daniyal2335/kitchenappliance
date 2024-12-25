@@ -33,6 +33,9 @@
     <link href="assets/css/slicknav.css" rel="stylesheet"/>
     <!--== Swiper CSS ==-->
     <link href="assets/css/swiper.min.css" rel="stylesheet"/>
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
 
@@ -170,7 +173,7 @@
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
                   <li><a href="account.php">My Account</a></li>
-                  <li><a href="shop-wishlist.php">Wishlist</a></li>
+                  <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
                   <li><a href="blog.html">Blog</a></li>

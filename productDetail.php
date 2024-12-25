@@ -1,6 +1,7 @@
 
 <?php
 include('adminpanel/query.php');
+include('query.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +42,7 @@ include('adminpanel/query.php');
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
 
+
 </head>
 
 <body>
@@ -49,7 +51,7 @@ include('adminpanel/query.php');
 <div class="wrapper home-default-wrapper">
 
   <!--== Start Preloader Content ==-->
-  <div class="preloader-wrap">
+  <!-- <div class="preloader-wrap">
     <div class="preloader">
       <span class="dot"></span>
       <div class="dots">
@@ -58,7 +60,7 @@ include('adminpanel/query.php');
         <span></span>
       </div>
     </div>
-  </div>
+  </div> -->
   <!--== End Preloader Content ==-->
 
   <!--== Start Header Wrapper ==-->
@@ -215,7 +217,7 @@ include('adminpanel/query.php');
                   </div>
                   <div class="shopping-cart-btn">
                     <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
-                    <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
+                    <!-- <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a> -->
                   </div>
                 </div>
               </div>
@@ -247,17 +249,38 @@ include('adminpanel/query.php');
       </div>
     </section>
     <!--== End Page Title Area ==-->
+    
     <?php
-
-if (isset($_GET['id'])) {
-    $productId = $_GET['id'];
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
-    $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-?>
+    if (isset($_GET['id'])) {
+        $productId = $_GET['id'];
+        
+        
+    
+        $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
+        
+        // Execute the statement and check for errors
+        if ($stmt->execute()) {
+            $product = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($product) {
+                // Product found, proceed with displaying details
+                // For example:
+               // echo "Product Name: " . htmlspecialchars($product['name']);
+            } else {
+                // Product not found
+                echo "Product not found!";
+            }
+        } else {
+            // Error executing query
+            echo "Error executing query.";
+            print_r($stmt->errorInfo());
+        }
+    } else {
+        echo "Product ID is missing in the URL!";
+    }
+    ?>
+    
 <!--== Start Shop Area ==-->
 <section class="product-area shop-single-product">
   <div class="container">
@@ -284,7 +307,8 @@ if (isset($_GET['id'])) {
               <div class="pro-qty">
                 <input type="number" id="quantity" name="quantity" value="1" min="1" />
               </div>
-              <a href="add_to_cart.php?id=<?= $product['id']; ?>&quantity=" class="btn btn-black" id="addToCartButton">
+              <!-- Updated link for "Add to cart" -->
+              <a href="javascript:void(0);" class="btn btn-black" id="addToCartButton">
                 <i class="fa fa-opencart"></i> Add to cart
               </a>
             </div>
@@ -296,12 +320,24 @@ if (isset($_GET['id'])) {
 </section>
 
 <script>
-// Update the "Add to cart" button URL to include the quantity
-document.getElementById('addToCartButton').addEventListener('click', function (e) {
-  e.preventDefault();
-  const quantity = document.getElementById('quantity').value;
-  const url = `shop-cart.php?id=<?= $product['id']; ?>&quantity=${quantity}`;
-  window.location.href = url; // Redirect to add_to_cart.php with product ID and quantity
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the product ID from PHP and quantity from the input field
+  const productId = <?= $product['id']; ?>; // Injecting PHP product ID into JavaScript
+  const quantityInput = document.getElementById('quantity');
+  
+  // Update the "Add to cart" button URL to include the quantity
+  document.getElementById('addToCartButton').addEventListener('click', function (e) {
+    e.preventDefault();
+    
+    // Get the quantity value from the input field
+    const quantity = quantityInput.value;
+    
+    // Construct the URL with product ID and quantity
+    const url = `shop-cart.php?id=${productId}&quantity=${quantity}`;
+    
+    // Redirect to the cart page with the product ID and quantity
+    window.location.href = url;
+  });
 });
 </script>
 
@@ -675,13 +711,14 @@ document.getElementById('addToCartButton').addEventListener('click', function (e
 </div>
 
 <!--=======================Javascript============================-->
-
+<script src="assets/js/jquery-3.7.1.min.js"></script>
 <!--=== Modernizr Min Js ===-->
+<!-- <script src="assets/js/jquery-main.js"></script> -->
 <script src="assets/js/modernizr.js"></script>
 <!--=== jQuery Min Js ===-->
-<script src="assets/js/jquery-main.js"></script>
+
 <!--=== jQuery Migration Min Js ===-->
-<script src="assets/js/jquery-migrate.js"></script>
+<!-- <script src="assets/js/jquery-migrate.js"></script> -->
 <!--=== Bootstrap Min Js ===-->
 <script src="assets/js/bootstrap.min.js"></script>
 <!--=== jquery Appear Js ===-->

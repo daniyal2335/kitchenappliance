@@ -2,6 +2,11 @@
   
   "use strict";
 
+  // Preloader
+  function stylePreloader() {
+    $('body').addClass('preloader-deactive');
+  }
+
   // Background Image
   $('[data-bg-img]').each(function() {
     $(this).css('background-image', 'url(' + $(this).data("bg-img") + ')');
@@ -18,7 +23,7 @@
     $("body").removeClass('fix');
   });
 
-  // Responsive Slicknav JS
+  //Responsive Slicknav JS
   $('.main-menu').slicknav({
     appendTo: '.res-mobile-menu',
     closeOnClick: true,
@@ -27,10 +32,198 @@
     openedSymbol: '<i class="fa fa-minus"></i>'
   });
 
-  // Other functionality for sliders, fancybox, zoom, etc. remain unchanged
+  // Off Canvas JS
+  var quickViewModal = $(".product-quick-view-modal");
+  $(".product-action .action-quick-view").on('click', function() {
+    quickViewModal.addClass('active');
+    $("body").addClass('fix');
+  });
+  $(".btn-close, .canvas-overlay").on('click', function() {
+    quickViewModal.removeClass('active');
+    $("body").removeClass('fix');
+  });
 
-  // Countdown JS
+  // Swipper JS
+  var homeSlider = new Swiper('.home-slider-container', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 0,
+    speed: 500,
+    autoplay: {
+      delay: 4000,
+    },
+  });
+
+  // Swipper JS
+  var teamSlider = new Swiper('.team-slider-container', {
+    slidesPerView: 3,
+    loop: true,
+    spaceBetween : 30,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      1200:{
+          slidesPerView : 3
+      },
+
+      992:{
+          slidesPerView : 3
+      },
+
+      768:{
+          slidesPerView : 2
+
+      },
+
+      576:{
+          slidesPerView : 2
+      },
+
+      0:{
+          slidesPerView : 1
+      }
+    }
+  });
+
+  // Swipper JS
+  var testimonialSlider = new Swiper('.testimonial-slider-container', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween : 30,
+    autoplay: {
+      delay: 4000,
+    },
+  });
+
+  // Swipper JS
+  var teamSlider = new Swiper('.product4-slider-container', {
+    slidesPerView: 4,
+    loop: true,
+    spaceBetween : 30,
+    autoplay: {
+      delay: 4000,
+    },
+    breakpoints: {
+      1200:{
+          slidesPerView : 4
+      },
+
+      992:{
+          slidesPerView : 3
+      },
+
+      768:{
+          slidesPerView : 2
+
+      },
+
+      576:{
+          slidesPerView : 2
+      },
+
+      0:{
+          slidesPerView : 1
+      }
+    }
+  });
+
+  var brandLogoSlider = new Swiper('.brand-logo-slider-container', {
+    slidesPerView : 4,
+    loop: true,
+    speed: 1000,
+    spaceBetween : 20,
+    autoplay: false,
+    breakpoints: {
+      992:{
+          slidesPerView : 4
+      },
+
+      768:{
+          slidesPerView : 3
+
+      },
+
+      576:{
+          slidesPerView : 3
+      },
+
+      380:{
+          slidesPerView : 3
+      },
+
+      0:{
+          slidesPerView : 2
+      }
+    }
+  });
+
+  var ProductNav = new Swiper('.single-product-nav-slider', {
+    spaceBetween: 30,
+    slidesPerView: 4,
+    freeMode: true,
+    navigation: {
+      nextEl: '.single-product-nav-slider .swiper-button-next',
+      prevEl: '.single-product-nav-slider .swiper-button-prev',
+    },
+  });
+  var ProductThumb = new Swiper('.single-product-thumb-slider', {
+    freeMode: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    thumbs: {
+      swiper: ProductNav
+    }
+  });
+
+  // Fancybox Js
+  $('.lightbox-image').fancybox();
+
+  //Video Popup
+  $('.play-video-popup').fancybox();
+  
+  // Images Zoom
+  $('.zoom-hover').zoom();
+
+  //Shop review btn
+  $(".review-write-btn").on('click', function() {
+    $(".product-review-form").toggle('active');
+  });
+
+  // Product Qty
+  var proQty = $(".pro-qty");
+  proQty.append('<a href="#" class="inc qty-btn">+</a>');
+  proQty.append('<a href="#" class= "dec qty-btn">-</a>');
+  $('.qty-btn').on('click', function(e) {
+    e.preventDefault();
+    var $button = $(this);
+    var oldValue = $button.parent().find('input').val();
+    if ($button.hasClass('inc')) {
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      // Don't allow decrementing below zero
+      if (oldValue > 1) {
+        var newVal = parseFloat(oldValue) - 1;
+      } else {
+        newVal = 1;
+      }
+    }
+    $button.parent().find('input').val(newVal);
+  });
+
   jQuery(document).ready(function($) {
+  // Countdown JS
     var now = new Date();
     var day = now.getDate();
     var month = now.getMonth() + 1;
@@ -39,8 +232,8 @@
     var nextyear = month + '/' + day + '/' + year + ' 07:07:07';
 
     $('.countdown-timer').countdown({
-      date: '4/12/2024 23:59:59',
-      offset: +2,
+      date: '4/12/2024 23:59:59', // TODO Date format: 07/27/2017 17:00:00
+      offset: +2, // TODO Your Timezone Offset
       day: 'Day',
       days: 'Days',
       hideOnComplete: true
@@ -81,14 +274,22 @@
         url: form.attr('action'),
         data: formData
     }).done(function(response) {
+        // Make sure that the formMessages div has the 'success' class.
         $(formMessages).removeClass('alert alert-danger');
         $(formMessages).addClass('alert alert-success fade show');
+
+        // Set the message text.
         formMessages.html("<button type='button' class='btn-close' data-bs-dismiss='alert'>&times;</button>");
         formMessages.append(response);
-        $('#contact-form input, #contact-form textarea').val('');
+
+        // Clear the form.
+        $('#contact-form input,#contact-form textarea').val('');
     }).fail(function(data) {
+        // Make sure that the formMessages div has the 'error' class.
         $(formMessages).removeClass('alert alert-success');
         $(formMessages).addClass('alert alert-danger fade show');
+
+        // Set the message text.
         if (data.responseText !== '') {
             formMessages.html("<button type='button' class='btn-close' data-bs-dismiss='alert'>&times;</button>");
             formMessages.append(data.responseText);
@@ -98,17 +299,17 @@
     });
   });
 
-  // Scroll To Top
+  //Scroll To Top
   $('.scroll-to-top').on('click', function(){
-    $('html, body').animate({scrollTop : 0}, 800);
+    $('html, body').animate({scrollTop : 0},800);
     return false;
   });
 
   // Reveal Footer JS
   let revealId = $(".reveal-footer"),
-      footerHeight = revealId.outerHeight(),
-      windowWidth = $(window).width(),
-      windowHeight = $(window).outerHeight();
+    footerHeight = revealId.outerHeight(),
+    windowWidth = $(window).width(),
+    windowHeight = $(window).outerHeight();
 
   if (windowWidth > 991 && windowHeight > footerHeight) {
     $(".site-wrapper-reveal").css({
@@ -116,13 +317,17 @@
     });
   }
   
-  /* ========================================================================== */
-  /*  When document is loading, do */
-  /* ========================================================================== */
+  
+/* ==========================================================================
+   When document is loading, do
+   ========================================================================== */
+  
   varWindow.on('load', function() {
     AOS.init({
       once: true,
     });
+    stylePreloader();
   });
+  
 
 })(window.jQuery);
