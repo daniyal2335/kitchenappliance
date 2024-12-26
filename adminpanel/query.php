@@ -5,17 +5,15 @@ include('dbcon.php');
 if(isset($_POST['addCategory'])){
     $cName=$_POST['cName'];
     $sales=$_POST['sale'];
-    $price=$_POST['pPrice'];
     $cImageName=$_FILES['cImage']['name'];
     $cImageTmpName=$_FILES['cImage']['tmp_name'];
     $extension=pathinfo($cImageName,PATHINFO_EXTENSION);
     $destination="img/".$cImageName;
     if($extension == "jpg"|| $extension == "png"|| $extension == "jpeg" || $extension == "webp"  ){
         if(move_uploaded_file($cImageTmpName,$destination)){
-            $query=$pdo->prepare("insert into category(name,sale,price,image)values(:cName, :cSale, :cPrice, :cImage)");
+            $query=$pdo->prepare("insert into category(name,sale,image)values(:cName, :cSale, :cImage)");
             $query->bindParam('cName',$cName);
             $query->bindParam('cSale',$sales);
-            $query->bindParam('cPrice',$price);
             $query->bindParam('cImage',$cImageName);
             $query->execute();
             echo "<script>alert('Category added successfully');
@@ -82,8 +80,7 @@ if(isset($_POST['updateCategory'])){
     $id=$_GET['cid'];
     $cName=$_POST['cName'];
     $sales=$_POST['sale'];
-    $price=$_POST['pPrice'];
-    $query=$pdo->prepare("update category set name=:uName,sale=:uSale,price=:uPrice where id=:cid");
+    $query=$pdo->prepare("update category set name=:uName,sale=:uSale  where id=:cid");
     if(isset($_FILES['cImage'])){
         $cImageName=$_FILES['cImage']['name'];
         $cImageTmpName=$_FILES['cImage']['tmp_name'];
@@ -91,14 +88,13 @@ if(isset($_POST['updateCategory'])){
         $destination="img/".$cImageName;
         if($extension == "jpg"|| $extension == "png" || $extension == "jpeg" || $extension == "webp"){
             if(move_uploaded_file($cImageTmpName,$destination)){
-                $query=$pdo->prepare("update category set name=:uName,sale=:uSale,price=:uPrice,image=:uImage where id=:cid");
+                $query=$pdo->prepare("update category set name=:uName,sale=:uSale,image=:uImage where id=:cid");
                 $query->bindParam('uImage',$cImageName);  
               
 
     }
 }
             $query->bindParam('uSale',$sales);  
-            $query->bindParam('uPrice',$price); 
             $query->bindParam('cid',$id);
             $query->bindParam('uName',$cName);
             $query->execute();

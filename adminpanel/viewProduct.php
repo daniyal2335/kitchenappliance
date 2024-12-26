@@ -2,7 +2,13 @@
 include('query.php');
 include('header.php');
 ?>
-
+<style>
+.description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+</style>
  <!-- Blank Start -->
  <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
@@ -34,7 +40,7 @@ include('header.php');
                                ?>
                                 <tr>
                                     <td scope="row"><?php echo $pdt['name']?></td>
-                                    <td><?php echo $pdt['des']?></td>
+                                    <td><div class="description"><?php echo htmlspecialchars($pdt['des']); ?></div></td>
                                     <td><img height="50px" src="img/<?php echo $pdt['image']?>" alt=""></td>
                                     <td><?php echo $pdt['prize']?></td>
                                     <td><?php echo $pdt['quantity']?></td>

@@ -188,9 +188,9 @@ if ($meta_tags) {
                     </li>
                   </ul> -->
                 <!-- </li> -->
-                <li class="has-submenu"><a href="blog.html">Blog</a>
+                <li class="has-submenu"><a href="blog.php">Blog</a>
                   <!-- <ul class="submenu-nav">
-                    <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
+                    <li><a href="blog.php">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
@@ -198,8 +198,8 @@ if ($meta_tags) {
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
                   </ul> -->
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="header-action-area">
@@ -221,9 +221,9 @@ if ($meta_tags) {
                 <ul class="user-menu">
                   <li><a href="account.php">My Account</a></li>
                   <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="blog.php">Blog</a></li>
                   <?php
 							if(isset($_SESSION['userEmail'])){
 								?>
@@ -376,7 +376,7 @@ if (count($category) > 0):
     <div class="row">
       <div class="col-md-8 col-lg-6 m-auto">
         <div class="section-title text-center">
-          <h2 class="title">Latest product</h2>
+          <h2 class="title">Kitchen Categories</h2>
           <p>Our latest item collection</p>
         </div>
       </div>
@@ -390,7 +390,7 @@ if (count($category) > 0):
                 <!-- Start Product Item -->
                 <div class="product-item">
                   <div class="product-thumb">
-                    <a href="productDetail.php?id=<?php echo $cat['id']; ?>">
+                    <a href="categoryDetail.php?id=<?php echo $cat['id']; ?>">
                       <img src="adminpanel/img/<?php echo $cat['image']; ?>" alt="<?php echo $cat['name']; ?>">
                       <?php if ($cat['sale']): ?>
                         <div class="ribbons">
@@ -399,15 +399,15 @@ if (count($category) > 0):
                         </div>
                       <?php endif; ?>
                     </a>
-                    <div class="product-action">
-                      <a class="action-cart" href="productDetail.php?id=<?php echo $cat['id']; ?>">
+                    <!-- <div class="product-action">
+                      <a class="action-cart" href="categoryDetail.php?id=<?php echo $cat['id']; ?>">
                         <i class="fa fa-opencart"></i>
                       </a>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="product-info">
                     <h4 class="title">
-                      <a href="productDetail.php?id=<?php echo $cat['id']; ?>">
+                      <a href="categoryDetail.php?id=<?php echo $cat['id']; ?>">
                         <?php echo $cat['name']; ?>
                       </a>
                     </h4>
@@ -570,9 +570,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="blog-details.html">There are many variations of passages</a>
                   </h4>
                   <div class="meta">
-                    <a class="post-date" href="blog.html">January 26, 2021</a>
+                    <a class="post-date" href="blog.php">January 26, 2021</a>
                     <span>/</span>
-                    <a class="post-author" href="blog.html">Demo Alan Admin</a>
+                    <a class="post-author" href="blog.php">Demo Alan Admin</a>
                   </div>
                   <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
                   <a class="btn-blog" href="blog-details.html">Read More</a>
@@ -593,9 +593,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="blog-details.html">The standard chunk of lorem ipsum used since</a>
                   </h4>
                   <div class="meta">
-                    <a class="post-date" href="blog.html">January 26, 2021</a>
+                    <a class="post-date" href="blog.php">January 26, 2021</a>
                     <span>/</span>
-                    <a class="post-author" href="blog.html">Demo Alan Admin</a>
+                    <a class="post-author" href="blog.php">Demo Alan Admin</a>
                   </div>
                   <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
                   <a class="btn-blog" href="blog-details.html">Read More</a>
@@ -630,8 +630,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <ul class="nav-menu nav">
                   <li><a href="account.php">Sign up</a></li>
                   <li><a href="shop.php">Shop</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
                   <li><a href="#blog">Blog</a></li>
                 </ul>
               </nav>

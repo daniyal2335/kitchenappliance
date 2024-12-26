@@ -139,9 +139,9 @@
                     </li>
                   </ul>
                 </li> -->
-                <li class="has-submenu"><a href="blog.html">Blog</a>
+                <li class="has-submenu"><a href="blog.php">Blog</a>
                   <!-- <ul class="submenu-nav">
-                    <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
+                    <li><a href="blog.php">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
@@ -149,7 +149,7 @@
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
                   </ul> -->
                 </li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="about.php">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
@@ -172,9 +172,9 @@
                 <ul class="user-menu">
                   <li><a href="account.html">My Account</a></li>
                   <li><a href="shop-wishlist.php">Wishlist</a></li>
-                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="about.php">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="blog.php">Blog</a></li>
                   <li><a href="login.php">Login</a></li>
                 </ul>
               </div>
@@ -378,9 +378,9 @@
                 <ul class="nav-menu nav">
                   <li><a href="shop-account.html">My Account</a></li>
                   <li><a href="shop-wishlist.html">Wishlist</a></li>
-                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="about.php">About Us</a></li>
                   <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="blog.php">Blog</a></li>
                 </ul>
               </nav>
             </div>

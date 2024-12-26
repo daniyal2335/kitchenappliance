@@ -26,11 +26,7 @@ if (isset($_GET['cid'])){
                               <input type="text" name="sale" value="<?php echo $cat['sale']?>"  id="" class="form-control" placeholder="" aria-describedby="helpId">
                          
                             </div> 
-                            <div class="form-group">
-                              <label for="">Price</label>
-                              <input type="text" name="pPrice" value="<?php echo $cat['price']?>"  id="" class="form-control" placeholder="" aria-describedby="helpId">
-                         
-                            </div>
+                          
                             <div class="form-group">
                               <label for="">image</label>
                               <input type="file" name="cImage" value="<?php echo $cat['image']?>" id="" class="form-control" placeholder="" aria-describedby="helpId">

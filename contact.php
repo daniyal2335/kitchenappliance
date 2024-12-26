@@ -1,3 +1,38 @@
+<?php
+include('./adminpanel/dbcon.php'); 
+
+$current_page = basename($_SERVER['PHP_SELF']); 
+
+$title = "Contact";
+$description = "Welcome to the Kitchen Accessories";
+$keywords = "website, jamal, contact";
+
+$query = "SELECT id, title, description, keywords FROM meta_tags WHERE page = :page";
+$stmt = $pdo->prepare($query);
+$stmt->execute([':page' => $current_page]);
+$meta_tags = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($meta_tags) {
+    $update_query = "UPDATE meta_tags SET title = :title, description = :description, keywords = :keywords WHERE page = :page";
+    $update_stmt = $pdo->prepare($update_query);
+    $update_stmt->execute([
+        ':title' => $title,
+        ':description' => $description,
+        ':keywords' => $keywords,
+        ':page' => $current_page
+    ]);
+} else {
+    $insert_query = "INSERT INTO meta_tags (page, title, description, keywords) VALUES (:page, :title, :description, :keywords)";
+    $insert_stmt = $pdo->prepare($insert_query);
+    $insert_stmt->execute([
+        ':page' => $current_page,
+        ':title' => $title,
+        ':description' => $description,
+        ':keywords' => $keywords
+    ]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +41,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>About - Alan - Kitchen Accessories Bootstrap 5 HTML Template</title>
+    <title><?php echo htmlspecialchars($title); ?> </title>
+    <meta name="description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($keywords); ?>">
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -14,7 +51,6 @@
     <!--== Google Fonts ==-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,400i,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,600,700" rel="stylesheet">
 
     <!--== Bootstrap CSS ==-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
@@ -34,6 +70,9 @@
     <link href="assets/css/slicknav.css" rel="stylesheet"/>
     <!--== Swiper CSS ==-->
     <link href="assets/css/swiper.min.css" rel="stylesheet"/>
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
 
@@ -42,9 +81,9 @@
 <body>
 
 <!--wrapper start-->
-<div class="wrapper home-default-wrapper">
+<!-- <div class="wrapper home-default-wrapper">
 
-  <!--== Start Preloader Content ==-->
+  <!-Start Preloader Content ==-->
   <!-- <div class="preloader-wrap">
     <div class="preloader">
       <span class="dot"></span>
@@ -54,7 +93,7 @@
         <span></span>
       </div>
     </div>
-  </div> -->
+  </div> --> 
   <!--== End Preloader Content ==-->
 
   <!--== Start Header Wrapper ==-->
@@ -63,7 +102,7 @@
       <div class="row align-items-center">
         <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="index.php">
               <img class="logo-main" src="assets/img/logo.png" alt="Logo" />
               <img class="logo-light" src="assets/img/logo.png" alt="Logo" />
             </a>
@@ -74,49 +113,49 @@
             <div class="header-navigation-area">
               <ul class="main-menu nav justify-content-center">
                 <li class="has-submenu active"><a href="index.php">Home</a>
-                  <ul class="submenu-nav">
-                    <!-- <li><a href="index.html">Home 1</a></li>
-                    <li><a href="index-2.html">Home 2</a></li> -->
-                  </ul>
+                  <!-- <ul class="submenu-nav">
+                    <li><a href="index.php">Home</a></li> -->
+                    <!-- <li><a href="index-2.html">Home 2</a></li> -->
+                  <!-- </ul> -->
                 </li>
                 <li class="has-submenu"><a href="shops.php">Shop</a>
-                  <!-- <ul class="submenu-nav submenu-nav-mega">
-                    <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
+                  <!-- <ul class="submenu-nav submenu-nav-mega"> -->
+                    <!-- <li class="mega-menu-item"><a class="srmenu-title" href="#">Cutting Board</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Fish spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Pasta fork</a></li>
-                        <li><a href="shop-single-product-title1.html">Bulb baster</a></li>
-                        <li><a href="shop-single-product-title1.html">Food mill</a></li>
+                        <li><a href="shop.php">Fish spatula</a></li>
+                        <li><a href="shop.php">Pasta fork</a></li>
+                        <li><a href="shop.php">Bulb baster</a></li>
+                        <li><a href="shop.php">Food mill</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Stainless steel</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Apple corer</a></li>
-                        <li><a href="shop-single-product-title1.html">Vegetable peeler</a></li>
-                        <li><a href="shop-single-product-title1.html">Garlic press</a></li>
-                        <li><a href="shop-single-product-title1.html">Pizza cutter</a></li>
+                        <li><a href="shop.php">Apple corer</a></li>
+                        <li><a href="shop.php">Vegetable peeler</a></li>
+                        <li><a href="shop.php">Garlic press</a></li>
+                        <li><a href="shop.php">Pizza cutter</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Marble</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Cheese slicer</a></li>
-                        <li><a href="shop-single-product-title1.html">Panini spatula</a></li>
-                        <li><a href="shop-single-product-title1.html">Melon baller</a></li>
-                        <li><a href="shop-single-product-title1.html">Nutcracker</a></li>
+                        <li><a href="shop.php">Cheese slicer</a></li>
+                        <li><a href="shop.php">Panini spatula</a></li>
+                        <li><a href="shop.php">Melon baller</a></li>
+                        <li><a href="shop.php">Nutcracker</a></li>
                       </ul>
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Granite</a>
                       <ul>
-                        <li><a href="shop-single-product-title1.html">Pizza peel</a></li>
-                        <li><a href="shop-single-product-title1.html">Mini whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">French whisk</a></li>
-                        <li><a href="shop-single-product-title1.html">Mixing whisk</a></li>
+                        <li><a href="shop.php">Pizza peel</a></li>
+                        <li><a href="shop.php">Mini whisk</a></li>
+                        <li><a href="shop.php">French whisk</a></li>
+                        <li><a href="shop.php">Mixing whisk</a></li>
                       </ul>
-                    </li>
-                  </ul> -->
+                    </li> -->
+                  <!-- </ul> -->
                 </li>
-                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.html">Product</a>
-                  <ul class="submenu-nav submenu-nav-mega">
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="productDetail.php">Product</a> -->
+                  <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
                         <li><a href="shop-3-grid.html">Shop 3 Column</a></li>
@@ -137,11 +176,11 @@
                         <li><a href="shop-single-product-soldout.html">Soldout Product</a></li>
                       </ul>
                     </li>
-                  </ul>
-                </li> -->
-                <li class="has-submenu"><a href="blog.html">Blog</a>
+                  </ul> -->
+                <!-- </li> -->
+                <li class="has-submenu"><a href="blog.php">Blog</a>
                   <!-- <ul class="submenu-nav">
-                    <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
+                    <li><a href="blog.php">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
@@ -149,14 +188,14 @@
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
                   </ul> -->
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="header-action-area">
               <div class="header-action-currency">
-                <!-- <span class="current-currency">USD</span>
-                <ul class="currency-dropdown">
+                  <!-- <span class="current-currency">Dashboard</span> -->
+                <!--<ul class="currency-dropdown">
                   <li class="currency-item active"><a href="#/">USD - US Dollar</a></li>
                   <li class="currency-item"><a href="#/">EUR - Euro</a></li>
                   <li class="currency-item"><a href="#/">GBP - British Pound</a></li>
@@ -170,63 +209,86 @@
               <div class="header-action-usermenu">
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
-                  <li><a href="account.html">My Account</a></li>
-                  <li><a href="shop-wishlist.html">Wishlist</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="login.php">Login</a></li>
+                  <li><a href="account.php">My Account</a></li>
+                  <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="blog.php">Blog</a></li>
+                  <?php
+							if(isset($_SESSION['userEmail'])){
+								?>
+								<li>
+								<a href="weblogout.php">logout</a>
+							</li>
+							<?php
+							
+							}
+							else{
+								?>
+								<li>
+								<a href="login.php">login</a>
+							</li>
+							<?php
+							}
+							?>
                 </ul>
               </div>
-              <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.html">
-                  <span class="cart-count">2</span>
-                  <i class="ti-shopping-cart"></i>
-                </a>
-                <div class="cart-dropdown-menu">
-                  <div class="minicart-action">
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">2. New badge product - m / gold</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$80.00</p>
-                      </div>
-                    </div>
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">11. Product with video - purple</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$39.00</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="shopping-cart-total">
-                    <h4>Total <span>$119.00</span></h4>
-                  </div>
-                  <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.html">View Cart</a>
-                    <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
-                  </div>
-                </div>
+              <?php
+
+$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$totalQty = 0;
+$totalPrice = 0;
+
+foreach ($cartItems as $item) {
+    $totalQty += $item['quantity'];
+    $totalPrice += $item['price'] * $item['quantity'];
+}
+?>
+  <div class="header-action-cart">
+    <a class="cart-icon" href="shop-cart.php">
+      <span class="cart-count"><?php echo $totalQty; ?></span>
+      <i class="ti-shopping-cart"></i>
+    </a>
+    <div class="cart-dropdown-menu">
+      <div class="minicart-action">
+        <?php if (!empty($cartItems)): ?>
+          <?php foreach ($cartItems as $item): ?>
+            <div class="minicart-item">
+              <div class="thumb">
+                <img src="adminpanel/img/<?php echo htmlspecialchars($item['image']); ?>" alt="Cart Item">
               </div>
-              <button class="btn-menu d-lg-none">
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
+              <div class="content">
+                <h4 class="title">
+                  <a href="#/"><?php echo htmlspecialchars($item['name']); ?></a>
+                </h4>
+                <h6 class="nrbQ">Qty: <?php echo $item['quantity']; ?></h6>
+                <p class="price">$<?php echo number_format($item['price'], 2); ?></p>
+              </div>
             </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="empty-cart">Your cart is empty.</p>
+        <?php endif; ?>
+      </div>
+      <div class="shopping-cart-total">
+        <h4>Total <span>$<?php echo number_format($totalPrice, 2); ?></span></h4>
+      </div>
+      <div class="shopping-cart-btn">
+        <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
+        <!-- <?php //if (!empty($cartItems)): ?>
+          <a class="btn-theme m-0" href="?checkout">Checkout</a>
+        <?php //else: ?> -->
+          <!-- <a class="btn-theme m-0" href="shop-cart.php">Add Items</a> -->
+        <?php //endif; ?>
       </div>
     </div>
-  </header>
-  <!--== End Header Wrapper ==-->
+  </div>
+  <button class="btn-menu d-lg-none">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
 
   <main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
@@ -235,8 +297,13 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="page-title-content text-center">
-              <h2 class="title text-white">About</h2>
-              <div class="bread-crumbs"><a href="index.php">Home<span class="breadcrumb-sep">/</span></a><span class="active">About</span></div>
+              <h2 class="title text-white">CONTACT</h2>
+              <div class="bread-crumbs">
+                <a href="index.php">Home
+                  <span class="breadcrumb-sep">/</span>
+                </a>
+                <span class="active">Contact</span>
+              </div>
             </div>
           </div>
         </div>
@@ -244,178 +311,102 @@
     </section>
     <!--== End Page Title Area ==-->
 
-    <!--== Start About Area ==-->
-    <section class="about-area about-default-area">
+    <!--== Start Contact Area ==-->
+    <section class="contact-area">
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <div class="about-content">
-              <div class="section-title">
-                <h5 class="subtitle">Welcome To</h5>
-                <h2 class="title">Our Alan Store!</h2>
-              </div>
-              <p>Phuler Shop is a premium HTML template designed and develoved from the ground up with the sole purpose of helping you create an astonishing, the beautiful and user friendly website that will boost your product’s sales.</p>
-              <p>The theme design package provides a complete Magento theme set for your online store according to your desired theme.</p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="thumb mt-md-60">
-              <img src="assets/img/about/about.png" alt="Image-Alan">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End About Area ==-->
-
-    <!--== Start Testimonial Area ==-->
-    <section class="testimonial-area testimonial-default-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7 m-auto">
-            <div class="testimonial-content">
-              <div class="swiper-container testimonial-slider-content testimonial-slider-container">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/1.webp" alt="Image-Alan">
-                        </div>
-                      </div>
-                      <div class="client-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore</p>
-                      </div>
-                      <div class="client-info">
-                        <h4 class="name">Khabuli Teop</h4>
-                        <h5 class="designation">Customer</h5>
-                      </div>
+            <div class="contact-form">
+              <form class="contact-form-wrapper" id="contact-form" action="http://whizthemes.com/mail-php/raju/arden/mail.php" method="post">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="section-title">
+                      <h2 class="title">Leave us a message</h2>
+                      <p>There are many variations of passages of Lorem Ipsum available, but the majority Lorem Ipsum available.</p>
                     </div>
                   </div>
-                  <div class="swiper-slide">
-                    <div class="testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/2.webp" alt="Image-Alan">
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input class="form-control" type="text" name="con_name" placeholder="Your name *">
                         </div>
                       </div>
-                      <div class="client-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore</p>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input class="form-control" type="email" name="con_email" placeholder="Your email *">
+                        </div>
                       </div>
-                      <div class="client-info">
-                        <h4 class="name">Pitter davil</h4>
-                        <h5 class="designation">Customer</h5>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input class="form-control" type="text" name="con_phone" placeholder="Subject">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group mb-0">
+                          <textarea class="form-control textarea" name="con_message" placeholder="Type your message here.."></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group mb-0">
+                          <button class="btn btn-theme" type="submit">SEND MESSAGE</button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </form>
+            </div>
+            <!-- Message Notification -->
+            <div class="form-message"></div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-title mt-md-30">
+                  <h2 class="title">Contact address</h2>
+                  <p>There are many variations of passages of Lorem Ipsum available, but the majority Lorem Ipsum available.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="contact-info-content">
+                  <div class="contact-info-item">
+                    <div class="content">
+                      <h4>Our Address</h4>
+                      <p>House. 9, Road. 12, Widgets. Orled. Sydney. Milaro.</p>
+                    </div>
+                  </div>
+                  <div class="contact-info-item">
+                    <div class="content">
+                      <h4>Phone Number</h4>
+                      <p>01234 567 890<br>01234 567 891</p>
+                    </div>
+                  </div>
+                  <div class="contact-info-item mb-0 pb-0">
+                    <div class="content">
+                      <h4>Web Address</h4>
+                      <p>info@example.com<br>www.example.com</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!--== End Testimonial Area ==-->
-
-    <!--== Start Team Area ==-->
-    <section class="team-area team-default-area">
-      <div class="container">
         <div class="row">
-          <div class="col-md-8 col-lg-6 m-auto">
-            <div class="section-title text-center">
-              <h2 class="title">Team Members</h2>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/1.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Mr. Nirob Khan</a></h4>
-                  <h6 class="designation">Manager</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/2.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Ms. Emma</a></h4>
-                  <h6 class="designation">Designer</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="team-member">
-              <div class="thumb">
-                <img src="assets/img/team/3.webp" alt="Image">
-                <div class="social-icons">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a> 
-                </div>
-              </div>
-              <div class="content">
-                <div class="member-info">
-                  <h4 class="name"><a href="#/">Mike Banding</a></h4>
-                  <h6 class="designation">Developer</h6>
-                </div>
-              </div>
+          <div class="col-12">
+            <div class="contact-map-area pt-80">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8402891185374!2d144.95373631590425!3d-37.81720974201477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2ssg!4v1607294780661!5m2!1sen!2ssg"></iframe>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--== End Team Area ==-->
-
-    <!--== Start Brand Logo Area ==-->
-    <section class="brand-logo-area brand-logo-default-area">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-12">
-            <div class="swiper-container brand-logo-slider-container">
-              <div class="swiper-wrapper brand-logo-slider">
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/1.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/2.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/3.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/4.webp" alt="Brand-Logo"></a>
-                </div>
-                <div class="swiper-slide brand-logo-item">
-                  <a href="#/"><img src="assets/img/brand-logo/5.webp" alt="Brand-Logo"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Brand Logo Area ==-->
+    <!--== End Contact Area ==-->
   </main>
 
   <!--== Start Footer Area Wrapper ==-->
@@ -439,8 +430,8 @@
                   <li><a href="shop-account.html">My Account</a></li>
                   <li><a href="shop-wishlist.html">Wishlist</a></li>
                   <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="blog.php">Blog</a></li>
                 </ul>
               </nav>
             </div>
@@ -557,7 +548,7 @@
         <!-- Off Canvas Header -->
         <div class="off-canvas-header">
           <div class="logo-area">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="Logo" /></a>
           </div>
           <div class="close-action">
             <button class="btn-close"><i class="fa fa-close"></i></button>

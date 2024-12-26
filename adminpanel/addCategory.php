@@ -20,11 +20,7 @@ include('header.php');
                          
                             </div>
                            
-                            <div class="form-group">
-                              <label for="">Price</label>
-                              <input type="text" name="pPrice" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                         
-                            </div>
+                           
                             
                             <div class="form-group">
                               <label for="">image</label>

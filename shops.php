@@ -1,6 +1,41 @@
 <?php
 include('query.php');
 ?>
+<?php
+include('./adminpanel/dbcon.php'); 
+
+$current_page = basename($_SERVER['PHP_SELF']); 
+
+$title = "Shop";
+$description = "Welcome to the Kitchen Accessories";
+$keywords = "website, jamal, Shop";
+
+$query = "SELECT id, title, description, keywords FROM meta_tags WHERE page = :page";
+$stmt = $pdo->prepare($query);
+$stmt->execute([':page' => $current_page]);
+$meta_tags = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($meta_tags) {
+    $update_query = "UPDATE meta_tags SET title = :title, description = :description, keywords = :keywords WHERE page = :page";
+    $update_stmt = $pdo->prepare($update_query);
+    $update_stmt->execute([
+        ':title' => $title,
+        ':description' => $description,
+        ':keywords' => $keywords,
+        ':page' => $current_page
+    ]);
+} else {
+    $insert_query = "INSERT INTO meta_tags (page, title, description, keywords) VALUES (:page, :title, :description, :keywords)";
+    $insert_stmt = $pdo->prepare($insert_query);
+    $insert_stmt->execute([
+        ':page' => $current_page,
+        ':title' => $title,
+        ':description' => $description,
+        ':keywords' => $keywords
+    ]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +44,9 @@ include('query.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Kitchen Accessories </title>
+    <title><?php echo htmlspecialchars($title); ?> </title>
+    <meta name="description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($keywords); ?>">
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -36,6 +73,9 @@ include('query.php');
     <link href="assets/css/slicknav.css" rel="stylesheet"/>
     <!--== Swiper CSS ==-->
     <link href="assets/css/swiper.min.css" rel="stylesheet"/>
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
 
@@ -117,8 +157,8 @@ include('query.php');
                     </li> -->
                   <!-- </ul> -->
                 </li>
-                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="index.php">Product</a>
-                  <ul class="submenu-nav submenu-nav-mega">
+                <!-- <li class="has-submenu full-width colunm-two position-static"><a href="productDetail.php">Product</a> -->
+                  <!-- <ul class="submenu-nav submenu-nav-mega">
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Shop Pages Layout</a>
                       <ul>
                         <li><a href="shop-3-grid.html">Shop 3 Column</a></li>
@@ -139,11 +179,11 @@ include('query.php');
                         <li><a href="shop-single-product-soldout.html">Soldout Product</a></li>
                       </ul>
                     </li>
-                  </ul>
-                </li> -->
-                <li class="has-submenu"><a href="blog.html">Blog</a>
+                  </ul> -->
+                <!-- </li> -->
+                <li class="has-submenu"><a href="blog.php">Blog</a>
                   <!-- <ul class="submenu-nav">
-                    <li><a href="blog.html">Blog Grid Left Sidebar</a></li>
+                    <li><a href="blog.php">Blog Grid Left Sidebar</a></li>
                     <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                     <li><a href="blog-grid-no-sidebar.html">Blog Grid No Sidebar</a></li>
                     <li><a href="blog-details-left-sidebar.html">Blog Single Left Sidebar</a></li>
@@ -151,8 +191,8 @@ include('query.php');
                     <li><a href="blog-details-no-sidebar.html">Blog Single No Sidebar</a></li>
                   </ul> -->
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="header-action-area">
@@ -173,62 +213,86 @@ include('query.php');
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
                   <li><a href="account.php">My Account</a></li>
-                  <li><a href="shop-wishlist.php">Wishlist</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="login.php">Login</a></li>
+                  <!-- <li><a href="shop-wishlist.php">Wishlist</a></li> -->
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="blog.php">Blog</a></li>
+                  <?php
+							if(isset($_SESSION['userEmail'])){
+								?>
+								<li>
+								<a href="weblogout.php">logout</a>
+							</li>
+							<?php
+							
+							}
+							else{
+								?>
+								<li>
+								<a href="login.php">login</a>
+							</li>
+							<?php
+							}
+							?>
                 </ul>
               </div>
-              <div class="header-action-cart">
-                <a class="cart-icon" href="shop-cart.php">
-                  <span class="cart-count">2</span>
-                  <i class="ti-shopping-cart"></i>
-                </a>
-                <div class="cart-dropdown-menu">
-                  <div class="minicart-action">
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">2. New badge product - m / gold</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$80.00</p>
-                      </div>
-                    </div>
-                    <div class="minicart-item">
-                      <div class="thumb">
-                        <img src="assets/img/shop/cart/1.jpg" alt="Alan-Shop">
-                      </div>
-                      <div class="content">
-                        <h4 class="title"><a href="#/">11. Product with video - purple</a></h4>
-                        <h6 class="nrbQ">Qty: 1</h6>
-                        <p class="price">$39.00</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="shopping-cart-total">
-                    <h4>Total <span>$119.00</span></h4>
-                  </div>
-                  <div class="shopping-cart-btn">
-                    <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
-                    <a class="btn-theme m-0" href="shop-checkout.html">Checkout</a>
-                  </div>
-                </div>
+              <?php
+
+$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$totalQty = 0;
+$totalPrice = 0;
+
+foreach ($cartItems as $item) {
+    $totalQty += $item['quantity'];
+    $totalPrice += $item['price'] * $item['quantity'];
+}
+?>
+  <div class="header-action-cart">
+    <a class="cart-icon" href="shop-cart.php">
+      <span class="cart-count"><?php echo $totalQty; ?></span>
+      <i class="ti-shopping-cart"></i>
+    </a>
+    <div class="cart-dropdown-menu">
+      <div class="minicart-action">
+        <?php if (!empty($cartItems)): ?>
+          <?php foreach ($cartItems as $item): ?>
+            <div class="minicart-item">
+              <div class="thumb">
+                <img src="adminpanel/img/<?php echo htmlspecialchars($item['image']); ?>" alt="Cart Item">
               </div>
-              <button class="btn-menu d-lg-none">
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
+              <div class="content">
+                <h4 class="title">
+                  <a href="#/"><?php echo htmlspecialchars($item['name']); ?></a>
+                </h4>
+                <h6 class="nrbQ">Qty: <?php echo $item['quantity']; ?></h6>
+                <p class="price">$<?php echo number_format($item['price'], 2); ?></p>
+              </div>
             </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="empty-cart">Your cart is empty.</p>
+        <?php endif; ?>
+      </div>
+      <div class="shopping-cart-total">
+        <h4>Total <span>$<?php echo number_format($totalPrice, 2); ?></span></h4>
+      </div>
+      <div class="shopping-cart-btn">
+        <a class="btn-theme m-0" href="shop-cart.php">View Cart</a>
+        <!-- <?php //if (!empty($cartItems)): ?>
+          <a class="btn-theme m-0" href="?checkout">Checkout</a>
+        <?php //else: ?> -->
+          <!-- <a class="btn-theme m-0" href="shop-cart.php">Add Items</a> -->
+        <?php //endif; ?>
       </div>
     </div>
-  </header>
-  <!--== End Header Wrapper ==-->
+  </div>
+  <button class="btn-menu d-lg-none">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
 
   <main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
@@ -251,7 +315,7 @@ include('query.php');
     </section>
     <!--== End Page Title Area ==-->
     <!--== Start Featured Product Area Wrapper ==-->
-    <section class="product-area featured-product-area" data-aos="fade-up" data-aos-duration="1000">
+<section class="product-area featured-product-area" data-aos="fade-up" data-aos-duration="1000">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-lg-6 m-auto">
@@ -312,11 +376,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   <?php endforeach; ?>
 </div>
-      
-        </div>
-      </div>
-    </section>
-              </main>
+  </div>
+</div>
+</section>
+  </main>
     <!--== End Featured Product Area Wrapper ==-->
 
     
@@ -340,9 +403,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <ul class="nav-menu nav">
                   <li><a href="shop-account.html">My Account</a></li>
                   <li><a href="shop-wishlist.html">Wishlist</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="blog.php">Blog</a></li>
                 </ul>
               </nav>
             </div>

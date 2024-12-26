@@ -1,6 +1,4 @@
-
 <?php
-include('adminpanel/query.php');
 include('query.php');
 ?>
 <?php
@@ -8,9 +6,9 @@ include('./adminpanel/dbcon.php');
 
 $current_page = basename($_SERVER['PHP_SELF']); 
 
-$title = "Sign up";
+$title = "search Kitchen Products ";
 $description = "Welcome to the Kitchen Accessories";
-$keywords = "website, jamal, SignUp";
+$keywords = "website, jamal, display Kitchen Products ";
 
 $query = "SELECT id, title, description, keywords FROM meta_tags WHERE page = :page";
 $stmt = $pdo->prepare($query);
@@ -174,7 +172,7 @@ if ($meta_tags) {
                     </li>
                     <li class="mega-menu-item"><a class="srmenu-title" href="#">Single Products</a>
                       <ul>
-                        <li><a href="shop-single-product.html">Simple Product</a></li>
+                        <li><a href="productDetail.php">Simple Product</a></li>
                         <li><a href="shop-single-product-variable.html">Variable Product</a></li>
                         <li><a href="shop-single-product-affiliate.html">Affiliate Product</a></li>
                         <li><a href="shop-single-product-countdown.html">Countdown Product</a></li>
@@ -198,7 +196,7 @@ if ($meta_tags) {
               </ul>
             </div>
             <div class="header-action-area">
-              <div class="header-action-currency">
+              <!-- <div class="header-action-currency"> -->
                   <!-- <span class="current-currency">Dashboard</span> -->
                 <!--<ul class="currency-dropdown">
                   <li class="currency-item active"><a href="#/">USD - US Dollar</a></li>
@@ -210,7 +208,10 @@ if ($meta_tags) {
                   <li class="currency-item"><a href="#/">CAD - Canada Dollar</a></li>
                   <li class="currency-item"><a href="#/">AUD - Australian Dollar</a></li>
                 </ul> -->
-              </div>
+              <!-- </div> -->
+     
+           
+
               <div class="header-action-usermenu">
                 <div class="icon-usermenu"><i class="ti-settings"></i></div>
                 <ul class="user-menu">
@@ -238,6 +239,7 @@ if ($meta_tags) {
 							?>
                 </ul>
               </div>
+       
               <?php
 
 $cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -294,322 +296,119 @@ foreach ($cartItems as $item) {
     <span></span>
   </button>
 </header>
-
-  
-  <main class="main-content site-wrapper-reveal">
+<main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
-    <section class="page-title-area" data-bg-img="assets/img/about/ban.webp">
-      <div class="container">
+    <!-- <section class="page-title-area" data-bg-img="assets/img/about/ban.webp">
+    <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="page-title-content text-center">
-              <h2 class="title text-white">Product Detail</h2>
-              <div class="bread-crumbs"><a href="index.php">Home<span class="breadcrumb-sep">/</span></a><span class="active">Product Detail</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Page Title Area ==-->
-    
-    <?php
-    if (isset($_GET['id'])) {
-        $productId = $_GET['id'];
-        
-        
-    
-        $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
-        $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
-        
-        // Execute the statement and check for errors
-        if ($stmt->execute()) {
-            $product = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($product) {
-                // Product found, proceed with displaying details
-                // For example:
-               // echo "Product Name: " . htmlspecialchars($product['name']);
-            } else {
-                // Product not found
-                echo "Product not found!";
-            }
-        } else {
-            // Error executing query
-            echo "Error executing query.";
-            print_r($stmt->errorInfo());
-        }
-    } else {
-        echo "Product ID is missing in the URL!";
-    }
-    ?>
-    
-<!--== Start Shop Area ==-->
-<section class="product-area shop-single-product">
-  <div class="container">
-    <div class="row">
-      <!-- Product Images -->
-      <div class="col-lg-6">
-        <div class="single-product-slider">
-          <div class="single-product-thumb">
-            <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="img-fluid">
-          </div>
-        </div>
-      </div>
+            <div class="col-lg-12">
+                <div class="page-title-content text-center">
+                    <h2 class="title text-white">Kitchen Products</h2>
+                    <div class="bread-crumbs">
+                        <a href="index.php">Home
+                            <span class="breadcrumb-sep">/</span>
+                        </a>
+                        <span class="active">Kitchen Products</span>
+                    </div>
+                     -->
+                    <!-- Search Bar for Products -->
+                    <!-- <div class="search-bar-container">
+                        <form action="search_products.php" method="GET" class="search-bar-form">
+                            <input type="text" name="query" placeholder="Search kitchen products..." class="search-bar-input" required>
+                            <button type="submit" class="search-bar-button"><i class="ti-search"></i> Search</button>
+                        </form>
+                    </div>
 
-      <!-- Product Info -->
-      <div class="col-lg-6">
-        <div class="single-product-info">
-          <h4 class="title"><?= htmlspecialchars($product['name']); ?></h4>
-          <div class="prices">
-            <span class="price">$<?= number_format($product['prize'], 2); ?></span>
-          </div>
-          <p class="product-desc"><?= htmlspecialchars($product['des']); ?></p>
-          <div class="quick-product-action mt-0">
-            <div class="action-top">
-              <div class="pro-qty">
-                <input type="number" id="quantity" name="quantity" value="1" min="1" />
-              </div>
-              <!-- Updated link for "Add to cart" -->
-              <a href="javascript:void(0);" class="btn btn-black" id="addToCartButton">
-                <i class="fa fa-opencart"></i> Add to cart
-              </a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</section>
+<script>
+    document.querySelector('.search-bar-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const query = document.querySelector('.search-bar-input').value.trim();
+        if (query.length > 0) {
+            window.location.href = 'search_products.php?query=' + encodeURIComponent(query);
+        }
+    });
+</script> -->
+<?php
+if (isset($_GET['query'])) {
+  $query = $_GET['query'];
+  $sql = "SELECT * FROM products WHERE name LIKE :query OR sale_percentage LIKE :query";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([':query' => "%" . $query . "%"]);
+  $products = $stmt->fetchAll();
+}
+
+
+?>
+
+<section class="product-area featured-product-area" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 m-auto">
+                <div class="section-title text-center">
+                    <h2 class="title">
+                        Products for "<?php echo htmlspecialchars($_GET['query']); ?>"
+                    </h2>
+                    <!-- You can adjust the subtitle if necessary -->
+                    <!-- <p>Best selling item in our collection</p> -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                            <!-- Start Product Item -->
+                            <div class="product-item">
+                                <div class="product-thumb">
+                                    <a href="shop-single-product.php?id=<?= htmlspecialchars($product['id']); ?>">
+                                        <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
+                                        <div class="ribbons">
+                                            <?php if (!empty($product['sale_percentage'])): ?>
+                                                <span class="ribbon ribbon-hot">Sale</span>
+                                                <span class="ribbon ribbon-onsale align-right"><?= htmlspecialchars($product['sale_percentage']); ?>%</span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </a>
+                                    <div class="product-action">
+                                        <a class="action-cart" href="productDetail.php?id=<?= htmlspecialchars($product['id']); ?>">
+                                            <i class="fa fa-opencart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h4 class="title">
+                                        <a href="shop-single-product.php?id=<?= htmlspecialchars($product['id']); ?>">
+                                            <?= htmlspecialchars($product['name']); ?>
+                                        </a>
+                                    </h4>
+                                    <div class="prices">
+                                        <span class="price">$<?= number_format($product['prize'], 2); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Product Item -->
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No products found for your search.</p>
+                <?php endif; ?>
+                <button href="categoryDetail.php" class="btn btn-secondary">Back</button>
+            </div>
+        </div>
+    </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // Get the product ID from PHP and quantity from the input field
-  const productId = <?= $product['id']; ?>; // Injecting PHP product ID into JavaScript
-  const quantityInput = document.getElementById('quantity');
-  
-  // Update the "Add to cart" button URL to include the quantity
-  document.getElementById('addToCartButton').addEventListener('click', function (e) {
-    e.preventDefault();
-    
-    // Get the quantity value from the input field
-    const quantity = quantityInput.value;
-    
-    // Construct the URL with product ID and quantity
-    const url = `shop-cart.php?id=${productId}&quantity=${quantity}`;
-    
-    // Redirect to the cart page with the product ID and quantity
-    window.location.href = url;
-  });
-});
-</script>
+</main>
 
 
-    <!--== End Shop Area ==-->
 
-    <!--== Start Shop Tab Area ==-->
-    <section class="product-area product-description-review-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="product-description-review">
-              <ul class="nav nav-tabs product-description-tab-menu" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="product-desc-tab" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="product-review-tab" data-bs-toggle="tab" data-bs-target="#productReview" type="button" role="tab" aria-controls="productReview" aria-selected="false">Reviews</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="product-comment-tab" data-bs-toggle="tab" data-bs-target="#commentProduct" type="button" role="tab" aria-controls="commentProduct" aria-selected="false">Comments</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="product-custom-tab" data-bs-toggle="tab" data-bs-target="#productCustom" type="button" role="tab" aria-controls="productCustom" aria-selected="false">Shipping Policy</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="product-info-tab" data-bs-toggle="tab" data-bs-target="#productInfo" type="button" role="tab" aria-controls="productInfo" aria-selected="false">Size chart</button>
-                </li>
-              </ul>
-              <div class="tab-content product-description-tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
-                  <div class="product-desc">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="productReview" role="tabpanel" aria-labelledby="product-review-tab">
-                  <div class="product-review">
-                    <div class="review-header">
-                      <h4 class="title">Customer Reviews</h4>
-                      <div class="review-info">
-                        <ul class="review-rating">
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star-o"></i></li>
-                        </ul>
-                        <span class="review-caption">Based on 1 review</span>
-                        <span class="review-write-btn">Write a review</span>
-                      </div>
-                    </div>
-                    <div class="product-review-form">
-                      <h4 class="title">Write a review</h4>
-                      <form action="#" method="post">
-                        <div class="review-form-content">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="reviewFormName">Name</label>
-                                <input class="form-control" id="reviewFormName" type="text" placeholder="Enter your name" required="">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="reviewFormEmail">Email</label>
-                                <input class="form-control" id="reviewFormEmail" type="email" placeholder="john.smith@example.com" required="">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="rating">
-                                <span class="rating-title">Rating</span>
-                                <span>
-                                  <a class="fa fa-star-o" href="#/"></a>
-                                  <a class="fa fa-star-o" href="#/"></a>
-                                  <a class="fa fa-star-o" href="#/"></a>
-                                  <a class="fa fa-star-o" href="#/"></a>
-                                  <a class="fa fa-star-o" href="#/"></a>
-                                </span>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="reviewReviewTitle">Review Title</label>
-                                <input class="form-control" id="reviewReviewTitle" type="text" placeholder="Give your review a title" required="">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="reviewFormTextarea">Body of Review <span>(1500)</span></label>
-                                <textarea class="form-control textarea" id="reviewFormTextarea" name="comment" rows="7" placeholder="Write your comments here" required=""></textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group pull-right">
-                                <button class="btn btn-theme" type="submit">Submit Review</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="review-content">
-                      <div class="review-item">
-                        <ul class="review-rating">
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star-o"></i></li>
-                        </ul>
-                        <h4 class="title">Cobus Bester</h4>
-                        <h5 class="review-date"><span>Cobus Bester</span> on <span>Mar 03, 2021</span></h5>
-                        <p>Can’t wait to start mixin’ with this one! Irba-irr-Up-up-up-up-date your theme!</p>
-                        <a class="review-report" href="#/">Report as Inappropriate</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="commentProduct" role="tabpanel" aria-labelledby="product-comment-tab">
-                  <div class="product-comment">
-                    <form action="#">
-                      <div class="product-comment-content">
-                        <img src="assets/img/shop/comment.png" alt="Image-HasTech">
-                        <textarea name="con_message" placeholder="Start the discussion…"></textarea>
-                      </div>
-                      <button class="btn btn-theme" type="submit">Post as Product</button>
-                    </form>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="productCustom" role="tabpanel" aria-labelledby="product-custom-tab">
-                  <div class="product-shipping-policy">
-                    <div class="section-title">
-                      <h2 class="title">Shipping policy for our store</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate</p>
-                    </div>
-                    <ul class="shipping-policy-list">
-                      <li>1-2 business days (Typically by end of day)</li>
-                      <li><a href="#">30 days money back guaranty</a></li>
-                      <li>24/7 live support</li>
-                      <li>odio dignissim qui blandit praesent</li>
-                      <li>luptatum zzril delenit augue duis dolore</li>
-                      <li>te feugait nulla facilisi.</li>
-                    </ul>
-                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum</p>
-                    <p>claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per</p>
-                    <p>seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="productInfo" role="tabpanel" aria-labelledby="product-info-tab">
-                  <div class="product-size-chart">
-                    <h4>Size Chart</h4>
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td class="cun-name"><span>UK</span></td>
-                          <td>18</td>
-                          <td>20</td>
-                          <td>22</td>
-                          <td>24</td>
-                          <td>26</td>
-                        </tr>
-                        <tr>
-                          <td class="cun-name"><span>European</span></td>
-                          <td>46</td>
-                          <td>48</td>
-                          <td>50</td>
-                          <td>52</td>
-                          <td>54</td>
-                        </tr>
-                        <tr>
-                          <td class="cun-name"><span>usa</span></td>
-                          <td>14</td>
-                          <td>16</td>
-                          <td>18</td>
-                          <td>20</td>
-                          <td>22</td>
-                        </tr>
-                        <tr>
-                          <td class="cun-name"><span>Australia</span></td>
-                          <td>28</td>
-                          <td>10</td>
-                          <td>12</td>
-                          <td>14</td>
-                          <td>16</td>
-                        </tr>
-                        <tr>
-                          <td class="cun-name"><span>Canada</span></td>
-                          <td>24</td>
-                          <td>18</td>
-                          <td>14</td>
-                          <td>42</td>
-                          <td>36</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Shop Tab Area ==-->
-    <!--== End Shop Area ==-->
-  </main>
-
+     
   <!--== Start Footer Area Wrapper ==-->
   <footer class="footer-area">
     <div class="footer-main">
@@ -749,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <!-- Off Canvas Header -->
         <div class="off-canvas-header">
           <div class="logo-area">
-            <a href="index.php"><img src="assets/img/logo.png" alt="Logo" /></a>
+            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
           </div>
           <div class="close-action">
             <button class="btn-close"><i class="fa fa-close"></i></button>
@@ -769,18 +568,18 @@ document.addEventListener('DOMContentLoaded', function () {
       <!-- End Off Canvas Content Wrapper -->
     </div>
   </aside>
-  <!--== End Side Menu ==-->  
+  <!--== End Side Menu ==-->
 </div>
 
+ 
 <!--=======================Javascript============================-->
-<script src="assets/js/jquery-3.7.1.min.js"></script>
+
 <!--=== Modernizr Min Js ===-->
-<!-- <script src="assets/js/jquery-main.js"></script> -->
 <script src="assets/js/modernizr.js"></script>
 <!--=== jQuery Min Js ===-->
-
+<script src="assets/js/jquery-main.js"></script>
 <!--=== jQuery Migration Min Js ===-->
-<!-- <script src="assets/js/jquery-migrate.js"></script> -->
+<script src="assets/js/jquery-migrate.js"></script>
 <!--=== Bootstrap Min Js ===-->
 <script src="assets/js/bootstrap.min.js"></script>
 <!--=== jquery Appear Js ===-->

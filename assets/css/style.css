@@ -3559,6 +3559,39 @@ table p {
   width: auto;
 }
 
+
+.search-bar-container {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.search-bar-form {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar-input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.search-bar-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar-button:hover {
+  background-color: #0056b3;
+}
+
 /*
 -----------------------------------------------------------------------
 	Form CSS
