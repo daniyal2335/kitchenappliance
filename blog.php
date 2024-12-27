@@ -313,101 +313,45 @@ foreach ($cartItems as $item) {
         <div class="row flex-row-reverse">
           <div class="col-lg-9">
             <div class="blog-content-area post-items-style2">
+<?php
+// Blogs ko fetch karna
+$stmt = $pdo->prepare("SELECT * FROM blogs ORDER BY created_at DESC   ");
+$stmt->execute();
+$blogs = $stmt->fetchAll();
+?>
               <div class="row">
+              <?php if (!empty($blogs)): ?>
+                <?php foreach ($blogs as $blog): ?>
                 <div class="col-md-6 col-lg-12">
                   <!--== Start Blog Post Item ==-->
                   <div class="post-item">
                     <div class="thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/1.webp" alt="Alan-Blog"></a>
+                    <a href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>">
+                      <a href="blog-details.php"><img src="adminpanel/img/<?= htmlspecialchars($blog['image_path']); ?>" alt="<?= htmlspecialchars($blog['title']); ?>"></a>
                     </div>
                     <div class="content">
                       <div class="inner-content">
                         <h4 class="title">
-                          <a href="blog-details.html">There are many variations of passages</a>
+                          <a href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>"><?= htmlspecialchars($blog['title']); ?></a>
                         </h4>
                         <div class="meta">
-                          <a class="post-date" href="blog.php">January 26, 2021</a>
+                          <a class="post-date" href="blog.php"><?= date('F d, Y', strtotime($blog['created_at'])); ?></a>
                           <span>/</span>
-                          <a class="post-author" href="blog.php">Demo Alan Admin</a>
+                          <a class="post-author" href="blog.php"><?= htmlspecialchars($blog['sub_description']); ?></a>
                         </div>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                        <a class="btn-blog" href="blog-details.html">Read More</a>
+                        <p><?= htmlspecialchars(substr($blog['description'], 0, 100)) . '...'; ?></p>
+                        <a class="btn-blog" href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>">Read More</a>
                       </div>
                     </div>
                   </div>
                   <!--== End Blog Post Item ==-->
                 </div>
-                <div class="col-md-6 col-lg-12">
-                  <!--== Start Blog Post Item ==-->
-                  <div class="post-item">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/2.webp" alt="Alan-Blog"></a>
-                    </div>
-                    <div class="content">
-                      <div class="inner-content">
-                        <h4 class="title">
-                          <a href="blog-details.html">There are many variations of passages</a>
-                        </h4>
-                        <div class="meta">
-                          <a class="post-date" href="blog.php">January 26, 2021</a>
-                          <span>/</span>
-                          <a class="post-author" href="blog.php">Demo Alan Admin</a>
-                        </div>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                        <a class="btn-blog" href="blog-details.html">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!--== End Blog Post Item ==-->
-                </div>
-                <div class="col-md-6 col-lg-12">
-                  <!--== Start Blog Post Item ==-->
-                  <div class="post-item">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/3.webp" alt="Alan-Blog"></a>
-                    </div>
-                    <div class="content">
-                      <div class="inner-content">
-                        <h4 class="title">
-                          <a href="blog-details.html">There are many variations of passages</a>
-                        </h4>
-                        <div class="meta">
-                          <a class="post-date" href="blog.php">January 26, 2021</a>
-                          <span>/</span>
-                          <a class="post-author" href="blog.php">Demo Alan Admin</a>
-                        </div>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                        <a class="btn-blog" href="blog-details.html">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!--== End Blog Post Item ==-->
-                </div>
-                <div class="col-md-6 col-lg-12">
-                  <!--== Start Blog Post Item ==-->
-                  <div class="post-item">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/4.webp" alt="Alan-Blog"></a>
-                    </div>
-                    <div class="content">
-                      <div class="inner-content">
-                        <h4 class="title">
-                          <a href="blog-details.html">There are many variations of passages</a>
-                        </h4>
-                        <div class="meta">
-                          <a class="post-date" href="blog.php">January 26, 2021</a>
-                          <span>/</span>
-                          <a class="post-author" href="blog.php">Demo Alan Admin</a>
-                        </div>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                        <a class="btn-blog" href="blog-details.html">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!--== End Blog Post Item ==-->
-                </div>
+                <?php endforeach; ?>
+                <?php else: ?>
+    <p>No blogs found.</p>
+  <?php endif; ?>
               </div>
-              <div class="pagination-area">
+              <!-- <div class="pagination-area">
                 <nav>
                   <ul class="page-numbers">
                     <li>
@@ -436,10 +380,10 @@ foreach ($cartItems as $item) {
                 <div class="total-pages">
                   <p>Showing 1 - 4 of 11 result</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="col-lg-3">
+          <!-- <div class="col-lg-3">
             <div class="sidebar-area mt-md-70">
               <div class="widget">
                 <div class="widget-search-box">
@@ -460,37 +404,37 @@ foreach ($cartItems as $item) {
                   <ul>
                     <li>
                       <div class="thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s1.webp" alt="Image-HasTech"></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s1.webp" alt="Image-HasTech"></a>
                       </div>
                       <div class="content">
-                        <a href="blog-details.html">There are many variations o...</a>
+                        <a href="blog-details.php">There are many variations o...</a>
                         <span>Jan 26, 2021</span>
                       </div>
                     </li>
                     <li>
                       <div class="thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s2.webp" alt="Image-HasTech"></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s2.webp" alt="Image-HasTech"></a>
                       </div>
                       <div class="content">
-                        <a href="blog-details.html">The standard chunk of lorem...</a>
+                        <a href="blog-details.php">The standard chunk of lorem...</a>
                         <span>Jan 26, 2021</span>
                       </div>
                     </li>
                     <li>
                       <div class="thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s3.webp" alt="Image-HasTech"></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s3.webp" alt="Image-HasTech"></a>
                       </div>
                       <div class="content">
-                        <a href="blog-details.html">There are many variations o...</a>
+                        <a href="blog-details.php">There are many variations o...</a>
                         <span>Jan 26, 2021</span>
                       </div>
                     </li>
                     <li>
                       <div class="thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s4.webp" alt="Image-HasTech"></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s4.webp" alt="Image-HasTech"></a>
                       </div>
                       <div class="content">
-                        <a href="blog-details.html">The standard chunk of lorem...</a>
+                        <a href="blog-details.php">The standard chunk of lorem...</a>
                         <span>Jan 26, 2021</span>
                       </div>
                     </li>
@@ -540,7 +484,7 @@ foreach ($cartItems as $item) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

@@ -315,7 +315,7 @@ foreach ($cartItems as $item) {
                     <div class="search-bar-container">
                         <form action="search_products.php" method="GET" class="search-bar-form">
                             <input type="text" name="query" placeholder="Search kitchen products..." class="search-bar-input" required>
-                            <button type="submit" class="search-bar-button"><i class="ti-search"></i> Search</button>
+                            <button type="submit" class="btn-theme m-0"><i class="ti-search"></i> Search</button>
                         </form>
                     </div>
 

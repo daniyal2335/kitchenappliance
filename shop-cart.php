@@ -519,22 +519,50 @@ if (isset($_POST['update_cart'])) {
                   </div>
                 </div> -->
                 <div class="col-lg-7">
-                  <div class="cart-subtotal">
-                    <h3 class="title">Cart Totals</h3>
-                    <table>
-                      <tbody>
-                        <tr class="cart-subtotal">
-                          <th>Subtotal</th>
-                          <td>
-                            <span class="amount">$<?= number_format($subtotal, 2); ?></span>
-                          </td>
-                        </tr>
-                        <tr class="order-total">
-                          <th>Total</th>
-                          <td>
-                            <span class="price">$<?= number_format($subtotal, 2); ?></span>
-                          </td>
-                        </tr>
+    <div class="cart-subtotal">
+        <h3 class="title">Cart Totals</h3>
+        <table>
+            <tbody>
+
+
+<?php
+$subtotal = 0;
+
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) {
+
+        $subtotal += $product['price'] * $product['quantity'];
+    }
+}
+?>
+              <tr class="cart-subtotal">
+    <th>Subtotal</th>
+    <td>
+        <?php if (isset($_SESSION['userId'])): ?>
+            <?php if ($subtotal > 0): ?>
+                <span class="amount">$<?= number_format($subtotal, 2); ?></span>
+            <?php else: ?>
+                <span class="warning">Your cart is empty.</span>
+            <?php endif; ?>
+        <?php else: ?>
+            <span class="warning">Please log in to see the subtotal.</span>
+        <?php endif; ?>
+    </td>
+</tr>
+<tr class="order-total">
+    <th>Total</th>
+    <td>
+        <?php if (isset($_SESSION['userId'])): ?>
+            <?php if ($subtotal > 0): ?>
+                <span class="price">$<?= number_format($subtotal, 2); ?></span>
+            <?php else: ?>
+                <span class="warning">Your cart is empty.</span>
+            <?php endif; ?>
+        <?php else: ?>
+            <span class="warning">Please log in to see the total.</span>
+        <?php endif; ?>
+    </td>
+</tr>
                       </tbody>
                     </table>
                     <?php 

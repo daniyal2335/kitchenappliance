@@ -83,6 +83,13 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Blog</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="addBlog.php" class="dropdown-item">addBlog</a>
+                            <a href="viewBlog.php" class="dropdown-item">Blog view</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Invoice & orders</a>
                         <div class="dropdown-menu bg-transparent border-0">
                         <a href="invoice.php" class="dropdown-item">Invoice</a>

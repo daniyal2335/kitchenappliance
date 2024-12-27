@@ -398,7 +398,7 @@ if (isset($_GET['query'])) {
                 <?php else: ?>
                     <p>No products found for your search.</p>
                 <?php endif; ?>
-                <button href="categoryDetail.php" class="btn btn-secondary">Back</button>
+                <a href="index.php" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>

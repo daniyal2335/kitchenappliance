@@ -308,11 +308,28 @@ foreach ($cartItems as $item) {
                 </a>
                 <span class="active">Shops</span>
               </div>
+                <!-- Search Bar for Products -->
+                <div class="search-bar-container">
+                        <form action="search_products.php" method="GET" class="search-bar-form">
+                            <input type="text" name="query" placeholder="Search kitchen products..." class="search-bar-input" required>
+                            <button type="submit" class="btn-theme m-0"><i class="ti-search"></i> Search</button>
+                        </form>
+                    </div>
+
             </div>
           </div>
         </div>
       </div>
     </section>
+    <script>
+    document.querySelector('.search-bar-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const query = document.querySelector('.search-bar-input').value.trim();
+        if (query.length > 0) {
+            window.location.href = 'search_products.php?query=' + encodeURIComponent(query);
+        }
+    });
+</script>
     <!--== End Page Title Area ==-->
     <!--== Start Featured Product Area Wrapper ==-->
 <section class="product-area featured-product-area" data-aos="fade-up" data-aos-duration="1000">
@@ -338,7 +355,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <!-- Start Product Item -->
       <div class="product-item">
         <div class="product-thumb">
-          <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+          <a href="productDetail.php?id=<?= $product['id']; ?>">
             <img src="adminpanel/img/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
             <div class="ribbons">
               <?php if ($product['sale_percentage']): ?>
@@ -363,7 +380,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="product-info">
           <h4 class="title">
-            <a href="shop-single-product.php?id=<?= $product['id']; ?>">
+            <a href="productDetail.php?id=<?= $product['id']; ?>">
               <?= htmlspecialchars($product['name']); ?>
             </a>
           </h4>

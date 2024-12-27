@@ -23,56 +23,79 @@ if(isset($_POST['addCategory'])){
     }
 
 }
-//add brands
-if(isset($_POST['addBrands'])){
-    $cName=$_POST['bName'];
-    $cDes=$_POST['bDes'];
-    $sDes=$_POST['bsDes'];
-    $cImageName=$_FILES['bImage']['name'];
-    $cImageTmpName=$_FILES['bImage']['tmp_name'];
-    $extension=pathinfo($cImageName,PATHINFO_EXTENSION);
-    $destination="img/".$cImageName;
-    if($extension == "jpg"|| $extension == "png"|| $extension == "jpeg"|| $extension == "avif"){
-        if(move_uploaded_file($cImageTmpName,$destination)){
-            $query=$pdo->prepare("insert into brands(name,des,subdes,image)values(:cName, :cDes,:sDes, :cImage)");
-            $query->bindParam('cName',$cName);
-            $query->bindParam('cDes',$cDes);
-            $query->bindParam('sDes',$sDes);
-            $query->bindParam('cImage',$cImageName);
-            $query->execute();
-            echo "<script>alert('Brands added successfully');
-        location.assign('index.php');
-        </script>";
+//update blogs
+
+if (isset($_POST['updateBlog'])) {
+    $id = $_GET['bid'];
+    $title = $_POST['utitle'];
+    $description = $_POST['udescription'];
+    $sub_description = $_POST['usub_description'];
+
+    if (isset($_FILES['uimage']) && $_FILES['uimage']['name']) {
+        $imageName = time() . "_" . $_FILES['uimage']['name'];
+        $imageTmpName = $_FILES['uimage']['tmp_name'];
+        $extension = pathinfo($imageName, PATHINFO_EXTENSION);
+        $destination = "img/" . $imageName;
+
+        if (in_array($extension, ['jpg', 'png', 'jpeg', 'avif', 'webp'])) {
+            if (move_uploaded_file($imageTmpName, $destination)) {
+                $imagePath = $imageName; 
+            }
+        } else {
+            echo "<script>alert('Invalid image type. Only jpg, png, jpeg, or avif allowed.');</script>";
+            exit;
         }
+    } else {
+        $imagePath = isset($blog['image_path']) ? $blog['image_path'] : ''; 
     }
 
+    $updateQuery = $pdo->prepare("UPDATE blogs SET title = :title, description = :description, sub_description = :sub_description, image_path = :image_path WHERE id = :id");
+    $updateQuery->bindParam(':title', $title);
+    $updateQuery->bindParam(':description', $description);
+    $updateQuery->bindParam(':sub_description', $sub_description);
+    $updateQuery->bindParam(':image_path', $imagePath);
+    $updateQuery->bindParam(':id', $id);
+    $updateQuery->bindParam(':id', $id);
 
+    if ($updateQuery->execute()) {
+        echo "<script>alert('Blog updated successfully'); location.assign('viewBlog.php');</script>";
+    } else {
+        $errorInfo = $updateQuery->errorInfo();
+        echo "<script>alert('Error updating blog: " . htmlspecialchars($errorInfo[2]) . "');</script>";
+    }
 }
-// Add Arrive Brands
-if (isset($_POST['addArriveBrands'])) {
-    $abName = $_POST['abName'];
-    $abDes = $_POST['abDes'];
-    $abImageName = $_FILES['abImage']['name'];
-    $abImageTmpName = $_FILES['abImage']['tmp_name'];
-    $extension = pathinfo($abImageName, PATHINFO_EXTENSION);
-    $destination = "img/" . $abImageName;
+//add blogs
+if (isset($_POST['addBlog'])) {
+    $title = $_POST['bName'];
+    $description = $_POST['bDes'];
+    $sub_description = $_POST['bsDes'];
+    $imageName = $_FILES['bImage']['name'];
+    $imageTmpName = $_FILES['bImage']['tmp_name'];
+    $extension = pathinfo($imageName, PATHINFO_EXTENSION);
+    $destination = "img/" . $imageName;  
 
     if ($extension == "jpg" || $extension == "png" || $extension == "jpeg" || $extension == "avif") {
-        if (move_uploaded_file($abImageTmpName, $destination)) {
-            $query = $pdo->prepare("INSERT INTO `arrived brands` (name, des, image) VALUES (:abName, :abDes, :abImage)");
-            $query->bindParam(':abName', $abName);
-            $query->bindParam(':abDes', $abDes);
-            $query->bindParam(':abImage', $abImageName); 
+        if (move_uploaded_file($imageTmpName, $destination)) {
+            $query = $pdo->prepare("INSERT INTO blogs (title, description, sub_description, image_path) 
+                                    VALUES (:title, :description, :sub_description, :image)");
+
+            $query->bindParam(':title', $title);
+            $query->bindParam(':description', $description);
+            $query->bindParam(':sub_description', $sub_description);
+            $query->bindParam(':image', $imageName);
 
             if ($query->execute()) {
-                echo "<script>alert('Arrive Brands added successfully');
-                location.assign('index.php');
-                </script>";
+                echo "<script>alert('Blog added successfully');
+                      location.assign('index.php');</script>";
             } else {
-                echo "<script>alert('Error adding Arrive Brands.');</script>";
+                echo "<script>alert('Error adding blog.');</script>";
             }
-        } 
-    } 
+        } else {
+            echo "<script>alert('Image upload failed.');</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid image format. Please upload JPG, PNG, JPEG, or AVIF.');</script>";
+    }
 }
 
 //update category
@@ -142,6 +165,17 @@ if(isset($_GET['cdid'])){
     </script>";
 
 }
+    //delete blog
+    if(isset($_GET['bdid'])){
+        $did=$_GET['bdid'];
+        $query=$pdo->prepare("Delete from blogs where id=:did");
+        $query->bindParam('did',$did);
+        $query->execute();
+        echo "<script>alert('Delete Blog successfully');
+        location.assign('viewBlog.php');
+        </script>";
+    
+    }
     //delete arrive brand
     if(isset($_GET['abdid'])){
         $did=$_GET['abdid'];

@@ -521,33 +521,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   <?php endforeach; ?>
 </div>
-      
-        </div>
+    </div>
       </div>
     </section>
     <!--== End Featured Product Area Wrapper ==-->
-
-    <!--== Start Newsletter Area Wrapper ==-->
-    <section class="newsletter-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-6 m-auto" data-aos="fade-up" data-aos-duration="1000">
-            <div class="section-title text-center">
-              <h2 class="title">Join to our Newsletter</h2>
-              <p>If you never miss our interesting news by joining our newsletter.</p>
-            </div>
-            <form class="input-btn-group">
-              <input class="form-control" type="text" placeholder="Enter your e-mail">
-              <button class="btn btn-theme btn-black" type="button">Subscribe!</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Newsletter Area Wrapper ==-->
-
     <!--== Start Blog Area Wrapper ==-->
-    <section id="blog" class="blog-area blog-default-area">
+ <section id="blog" class="blog-area blog-default-area">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-lg-6 m-auto" data-aos="fade-up" data-aos-duration="1000">
@@ -557,55 +536,47 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>
         </div>
-        <div class="row" data-aos="fade-up" data-aos-duration="1000">
-          <div class="col-md-6">
-            <!--== Start Blog Post Item ==-->
-            <div class="post-item mb-sm-30">
-              <div class="thumb">
-                <a href="blog-details.html"><img src="assets/img/blog/banner3.png" alt="Alan-Blog"></a>
-              </div>
-              <div class="content">
-                <div class="inner-content">
-                  <h4 class="title">
-                    <a href="blog-details.html">There are many variations of passages</a>
-                  </h4>
-                  <div class="meta">
-                    <a class="post-date" href="blog.php">January 26, 2021</a>
-                    <span>/</span>
-                    <a class="post-author" href="blog.php">Demo Alan Admin</a>
-                  </div>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                  <a class="btn-blog" href="blog-details.html">Read More</a>
-                </div>
-              </div>
-            </div>
-            <!--== End Blog Post Item ==-->
+<?php
+// Blogs ko fetch karna
+$stmt = $pdo->prepare("SELECT * FROM blogs ORDER BY created_at DESC limit 2");
+$stmt->execute();
+$blogs = $stmt->fetchAll();
+?>
+
+<div class="row" data-aos="fade-up" data-aos-duration="1000">
+  <?php if (!empty($blogs)): ?>
+    <?php foreach ($blogs as $blog): ?>
+      <div class="col-md-6">
+        <!--== Start Blog Post Item ==-->
+        <div class="post-item mb-sm-30">
+          <div class="thumb">
+            <a href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>">
+              <img src="adminpanel/img/<?= htmlspecialchars($blog['image_path']); ?>" alt="<?= htmlspecialchars($blog['title']); ?>">
+            </a>
           </div>
-          <div class="col-md-6">
-            <!--== Start Blog Post Item ==-->
-            <div class="post-item mb-sm-30">
-              <div class="thumb">
-                <a href="blog-details.html"><img src="assets/img/blog/banner2.png" alt="Alan-Blog"></a>
+          <div class="content">
+            <div class="inner-content">
+              <h4 class="title">
+                <a href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>"><?= htmlspecialchars($blog['title']); ?></a>
+              </h4>
+              <div class="meta">
+                <a class="post-date" href="blog.php"><?= date('F d, Y', strtotime($blog['created_at'])); ?></a>
+                <span>/</span>
+                <!-- <a class="post-author" href="blog.php"><//?= //htmlspecialchars($blog['sub_des']); ?></a> -->
               </div>
-              <div class="content">
-                <div class="inner-content">
-                  <h4 class="title">
-                    <a href="blog-details.html">The standard chunk of lorem ipsum used since</a>
-                  </h4>
-                  <div class="meta">
-                    <a class="post-date" href="blog.php">January 26, 2021</a>
-                    <span>/</span>
-                    <a class="post-author" href="blog.php">Demo Alan Admin</a>
-                  </div>
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the...</p>
-                  <a class="btn-blog" href="blog-details.html">Read More</a>
-                </div>
-              </div>
+              <p><?= htmlspecialchars(substr($blog['description'], 0, 100)) . '...'; ?></p>
+              <a class="btn-blog" href="blog-details.php?id=<?= htmlspecialchars($blog['id']); ?>">Read More</a>
             </div>
-            <!--== End Blog Post Item ==-->
           </div>
         </div>
-      </div>
+        <!--== End Blog Post Item ==-->
+</div>
+<?php endforeach; ?>
+  <?php else: ?>
+    <p>No blogs found.</p>
+  <?php endif; ?>
+</div>
+</div>
     </section>
     <!--== End Blog Area Wrapper ==-->
   </main>
